@@ -1,0 +1,22 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteCond $1 !^(index\.php|assets|robots\.txt|css|js)
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php/$1 [L]
+
+	#custom error
+    ErrorDocument 403 http://localhost/sinhs/index.php/error/e403
+    ErrorDocument 404 http://localhost/sinhs/index.php/error/e404
+    ErrorDocument 405 http://localhost/sinhs/index.php/error/e405
+    ErrorDocument 500 http://localhost/sinhs/index.php/error/e500
+    ErrorDocument 503 http://localhost/sinhs/index.php/error/e503
+	
+	# disable directory browsing
+	Options All -Indexes
+	
+	# block visitors referred from indicated domains
+	SetEnvIfNoCase ^User-Agent$ .*(craftbot|download|extract|stripper|sucker|ninja|clshttp|webspider|leacher|collector|grabber|webpictures) HTTP_SAFE_BADBOT
+	SetEnvIfNoCase ^User-Agent$ .*(libwww-perl|aesop_com_spiderman) HTTP_SAFE_BADBOT
+	Deny from env=HTTP_SAFE_BADBOT
+</IfModule>
