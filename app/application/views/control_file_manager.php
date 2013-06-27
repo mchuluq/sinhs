@@ -4,7 +4,7 @@
     <?php echo $_embed;?>
 
     <!-- load jquery UI -->
-    <link href="<?php echo base_url()?>assets/jquery-ui-themes/smoothness/jquery-ui-1.10.2.custom.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>assets/styles/jquery-ui-themes/smoothness/jquery-ui-1.10.2.custom.css" rel="stylesheet">
     <script src="<?php echo base_url()?>assets/scripts/jquery-ui-1.10.2.custom.js"></script>
 
     <?php echo $init ?>

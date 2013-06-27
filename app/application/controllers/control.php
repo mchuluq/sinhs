@@ -18,7 +18,6 @@ class Control Extends Member_Controller{
         $this->template->display('control','control panel');
     }
 
-
     //User Access Control Center
     function uac($act='index',$id=''){
         switch ($act) {
@@ -343,6 +342,113 @@ class Control Extends Member_Controller{
         }else{
             $this->load->view('xform/f_backup_system');
         }
+    }
+
+
+    //widget manager
+    function widget($act="list",$par=null){
+        switch($act){
+            case "list":
+                $this->_widget_list();
+                break;
+            case "add":
+                $this->_widget_add();
+                break;
+            case "edit":
+                $this->_widget_edit($par);
+                break;
+            case "drop":
+                $this->_widget_drop($par);
+                break;
+        }
+    }
+    private function _widget_list(){
+        $data['widget_list'] = $this->control_model->widget_list();
+        $this->template->display('control_widget','Widget Manager',$data);
+    }
+    private function _widget_add(){
+        if($_POST){
+            if($this->_validate_widget()){
+                $data=array(
+                    'w_name'=>str_replace(' ','',$this->input->post('w_name')),
+                    'w_title'=>$this->input->post('w_title'),
+                    'w_for'=>$this->input->post('w_for'),
+                );
+                $this->control_model->addWidget($data);
+                $notif= array('title'=>'Sukses','message'=>'widget "'.$this->input->post('w_title').'" telah disimpan','type'=>'success');
+            }else{
+                $notif= array('title'=>'Sukses','message'=>validation_errors(),'type'=>'warning');
+            }
+            echo json_encode($notif);
+        }else{
+
+            $data['widget']=array(
+                'w_id'=>'0',
+                'w_title'=>'',
+                'w_for'=>explode(',',''),
+                'w_name'=>''
+            );
+            $data['group'] =array();
+            foreach($this->control_model->getListGroup() as $key=>$value) {
+                $data['group'][] = $value['group_name'];
+            }
+            array_push($data['group'],'all');
+            $data['action'] = base_url('control/widget/add');
+            $this->load->view('xform/f_widget',$data);
+        }
+    }
+    private function _widget_edit($id){
+        if($_POST){
+            if($this->_validate_widget(TRUE)){
+                $data=array(
+                    'w_name'=>str_replace(' ','',$this->input->post('w_name')),
+                    'w_title'=>$this->input->post('w_title'),
+                    'w_for'=>$this->input->post('w_for'),
+                    'w_id'=>$this->input->post('w_id'),
+                );
+                $this->control_model->editWidget($data);
+                $notif= array('title'=>'Sukses','message'=>'widget "'.$this->input->post('w_title').'" telah diubah','type'=>'success');
+            }else{
+                $notif= array('title'=>'Sukses','message'=>validation_errors(),'type'=>'warning');
+            }
+            echo json_encode($notif);
+        }else{
+            $gw = $this->control_model->getSingleWidget($id);
+            $data['widget']=array(
+                'w_id'=>$gw['w_id'],
+                'w_title'=>$gw['w_title'],
+                'w_for'=>explode(',',$gw['w_for']),
+                'w_name'=>$gw['w_name']
+            );
+            $data['group'] =array();
+            foreach($this->control_model->getListGroup() as $key=>$value) {
+                $data['group'][] = $value['group_name'];
+            }
+            array_push($data['group'],'all');
+            $data['action'] = base_url('control/widget/edit/'.$id);
+            $this->load->view('xform/f_widget',$data);
+        }
+    }
+
+    private function _validate_widget($id=FALSE){
+        $this->load->library('form_validation');
+        if($id){
+            $this->form_validation->set_rules('w_id','id','required|integer|max_length[11]');
+        }
+        $this->form_validation->set_rules('w_name','Nama file','required');
+        $this->form_validation->set_rules('w_title','Judul Widget','required');
+        $this->form_validation->set_rules('w_for','Group','required');
+        if($this->form_validation->run()==TRUE){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+    private function _widget_drop($id){
+        if(empty($id)){echo file_get_contents(base_url('error/e500')); exit;}
+        $this->control_model->dropWidget($id);
+        $notif= array('title'=>'Sukses','message'=>'Widget Telah dihapus','type'=>'success');
+        echo json_encode($notif);
     }
 
 }

@@ -46,6 +46,10 @@
                                         <i class="cp-backup_system"></i>
                                         <h5>Backup System <small>Buat Cadangan File System</small></h5>
                                     </a>
+                                    <a class="span4" href="<?php echo base_url('control/widget')?>">
+                                        <i class="cp-widget_man"></i>
+                                        <h5>Widget Manager <small>Pengaturan widget</small></h5>
+                                    </a>
                                 </div>
                             </div>
                         </article>

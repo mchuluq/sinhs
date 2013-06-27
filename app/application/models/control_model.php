@@ -12,6 +12,7 @@ class Control_model extends CI_Model{
     private $group_tbl = 'user_group';
     private $access_tbl = 'user_access';
     private $menu_tbl ='user_menu';
+    private $widget_tbl = 'i_widgets';
 
     function __construct() {
         parent::__construct();
@@ -89,6 +90,26 @@ class Control_model extends CI_Model{
         }else{
             return FALSE;
         };
+    }
+
+    function widget_list(){
+        $query = $this->db->get($this->widget_tbl);
+        return $query->result_array();
+    }
+    function getSingleWidget($id){
+        $query = mysql_query("SELECT * FROM ".$this->widget_tbl." WHERE w_id = '$id'");
+        return mysql_fetch_array($query);
+    }
+    function addWidget($data){
+        $this->db->insert($this->widget_tbl,$data);
+    }
+    function editWidget($data){
+        $this->db->where('w_id',$data['w_id']);
+        $this->db->update($this->widget_tbl,$data);
+    }
+    function dropWidget($id){
+        $this->db->where('w_id',$id);
+        $this->db->delete($this->widget_tbl);
     }
 
 

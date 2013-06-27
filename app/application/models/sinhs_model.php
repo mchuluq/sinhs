@@ -27,6 +27,8 @@ class Sinhs_model extends CI_Model{
 
     private $khs_detail_v = 'view_khs_detail';
 
+    private $mhs_view = 'view_user_mahasiswa';
+
     function __construct(){
         parent::__construct();
     }
@@ -207,6 +209,36 @@ class Sinhs_model extends CI_Model{
         $this->db->from($this->mk_hmhs);
         return $this->db->count_all_results();
     }
+
+    function countMahasiswa($search=null){
+        if(!empty($search)){
+            $this->db->like('user_name',$search,'both');
+            $this->db->or_like('user_full_name',$search,'both');
+            $this->db->or_like('user_code',$search,'both');
+            $this->db->or_like('mhs_fak_prodi',$search,'both');
+            $this->db->or_like('mhs_angkatan',$search,'both');
+            $this->db->or_like('mhs_program',$search,'both');
+        }
+        $query = $this->db->get($this->mhs_view);
+        return $query->num_rows();
+    }
+    function getMahasiswaList($offset=0,$limit=10,$search=null){
+        $this->db->order_by($this->user_pk,'desc');
+        if(!empty($search)){
+            $this->db->like('user_name',$search,'both');
+            $this->db->or_like('user_full_name',$search,'both');
+            $this->db->or_like('user_code',$search,'both');
+            $this->db->or_like('mhs_fak_prodi',$search,'both');
+            $this->db->or_like('mhs_angkatan',$search,'both');
+            $this->db->or_like('mhs_program',$search,'both');
+        }
+        $query = $this->db->get($this->mhs_view,$limit,$offset);
+        return $query->result_array();
+    }
+    function updateFrsStatus($data){
+       $this->db->query("UPDATE ".$this->frs_tbl." SET frs_status = '".$data['frs_status']."' WHERE ".$this->frs_pk." = ".$data['frs_id']."");
+    }
+
 
     //KHS model
     function getKhsDetail($frs_grup){

@@ -42,4 +42,6 @@ class Khs extends Member_Controller{
         $data['transkrip']=$this->sinhs_model->getTranskrip($this->session->userdata('user_id'));
         $this->template->display('khs_transkrip','Transkrip',$data);
     }
+
+
 }

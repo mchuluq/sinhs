@@ -5,9 +5,11 @@ $crumbs = explode('/',$uri);
 <div class="span9">
     <ul class="crumbs">
         <li><a href="<?php echo base_url() ?>"><i class="icon icon-home"></i></a></li>
-        <?php foreach($crumbs as $crumb): ?>
-            <li><a><?php echo str_replace('%20',' ',str_replace(':','/',$crumb)) ?></a></li>
-        <?php endforeach ?>
+        <?php foreach($crumbs as $crumb):
+            if(!is_numeric($crumb)){ ?>
+                <li><a><?php echo str_replace(array('_','%20'),' ',str_replace(':','/',$crumb)) ?></a></li>
+            <?php }
+        endforeach ?>
     </ul>
 </div>
 <div class="span3">

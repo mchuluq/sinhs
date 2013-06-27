@@ -65,7 +65,9 @@
                 document.location = "<?php echo base_url('users/update/mahasiswa');?>"+"/"+$(el).attr('id');
             } else if(act=='change'){
                 changeStatus($(el).attr('id'));
-            };
+            }else if(act=='transkrip'){
+                document.location = "<?php echo base_url('nilai/transkrip_mahasiswa');?>"+"/"+$(el).attr('id');
+            }
         });
     })
 </script>
@@ -110,5 +112,6 @@
 <ul class="ch-contextmenu" id="menu_menu">
     <li><a href="#add-user">Tambah</a></li>
     <li><a href="#update-user">Ubah</a></li>
-    <li><a href="#change">Non Aktif / Aktif</a></li>
+    <li class="separator"><a href="#change">Non Aktif / Aktif</a></li>
+    <li><a href="#transkrip">Lihat Transkrip</a></li>
 </ul>

@@ -114,4 +114,28 @@ class Nilai extends Member_Controller{
         $data['total']=$this->xpage->show_count();
         $this->load->view('xdata/d_nilai_dosen',$data);
     }
+
+    function transkrip_mahasiswa($id,$stat='transkrip',$frs_id=null){
+        switch($stat){
+            case 'transkrip':
+                $this->getTranskrip($id);
+                break;
+            case 'aktif':
+                $this->updateFrs($frs_id,'1');
+                break;
+            case 'non-aktif':
+                $this->updateFrs($frs_id,'0');
+        }
+    }
+    private function getTranskrip($id){
+        if(empty($id)){echo file_get_contents(base_url('error/e500')); exit;}
+        $data['transkrip']=$this->sinhs_model->getTranskrip($id);
+        $data['id'] = $id;
+        $this->template->display('nilai_transkrip','Transkrip',$data);
+    }
+    private function updateFrs($frsId,$stat){
+        $data = array('frs_status'=>$stat,'frs_id'=>$frsId);
+        $this->sinhs_model->updateFrsStatus($data);
+        echo json_encode(array('title'=>'Sukses','message'=>'Status Matakuliah telah diubah','type'=>'success'));
+    }
 }

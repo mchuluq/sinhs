@@ -2,10 +2,24 @@
 <html>
 <head>
     <?php echo $_embed;?>
+    <link rel="stylesheet" href="<?php echo base_url('assets/styles/toggle-switch.css')?>">
+    <script>
+        $(document).ready(function(){
+           $("a.frs-stat").click(function(e){
+               e.preventDefault();
+               $.ajax({
+                   url: $(this).attr('href'),
+                   dataType: "json",
+                   success: function(data){
+                       cloudfire.notification(data.message,{title:data.title,type:data.type});
+                   }
+               });
+           }) ;
+        });
+    </script>
 </head>
 <body>
 <?php echo $_header;?>
-
 <div class="container-fluid">
     <div class="row-fluid" id="header-area">
         <?php echo $_head_area;?>
@@ -27,6 +41,7 @@
                                             <th>SKS</th>
                                             <th>Nilai</th>
                                             <th>&nbsp;</th>
+                                            <th>&nbsp;</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -39,6 +54,13 @@
                                                 <td><?php echo $khs['mk_sks'];?></td>
                                                 <td><?php echo $khs['frs_nilai_huruf'];?></td>
                                                 <td><?php echo $khs['frs_nilai_angka'];?></td>
+                                                <td><?php
+                                                    if($khs['frs_status'] == '1'){ ?>
+                                                        <a class="frs-stat" href="<?php echo base_url('nilai/transkrip_mahasiswa/'.$id.'/non-aktif/'.$khs['frs_id'])?>">Aktif</a>
+                                                    <?php } else { ?>
+                                                        <a class="frs-stat" href="<?php echo base_url('nilai/transkrip_mahasiswa/'.$id.'/aktif/'.$khs['frs_id'])?>">Non-Aktif</a>
+                                                    <?php } ?>
+                                                </td>
                                             </tr>
                                         <?php endforeach ?>
                                         </tbody>
@@ -64,6 +86,5 @@
         <?php echo $_footer; ?>
     </div>
 </div>
-
 </body>
 </html>
