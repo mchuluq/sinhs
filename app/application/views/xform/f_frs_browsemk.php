@@ -4,7 +4,7 @@
         var append = '<tr class="ch-glow"><td><input type="checkbox" name="mkt[]" value="TRUE" checked></td>'+content+'<td><input type="text" id="frs_keterangan" name="frs_keterangan[]" class="span12"></td></tr>';
         var mk_name = $(this).find('.mk_nama').text();
         var question = 'Apakah anda ingin menambahkan mata kuliah "'+mk_name+'" ?';
-        cloudfire.confirm(question,function(r) {
+        alertify.confirm(question,function(r) {
             if(r){
                 $('#mk_detail').find('tbody').append(append);
                 $.sinhs.close_modal();

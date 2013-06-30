@@ -6,14 +6,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" title="<?php echo $this->config->item('app_name')?>"><?php echo $this->config->item('app_shortname')?></a>
+            <!--<a class="brand" title="<?php echo $this->config->item('app_name')?>"><?php echo $this->config->item('app_shortname')?></a>-->
+            <a class="brand-custom" href="<?php echo base_url() ?>" title="<?php echo $this->config->item('app_name')?>"><span class="logo-sinhs-full"></span></a>
             <div class="nav-collapse collapse">
                 <div class="nav-collapse collapse">
-                    <ul class="nav">
+                    <ul class="nav pull-right">
                         <li><a href="<?php echo base_url('dashboard')?>">dashboard</a></li>
                         <li><a href="<?php echo base_url('about')?>">tentang</a></li>
-                    </ul>
-                    <ul class="nav pull-right">
                         <li id="fat-menu" class="dropdown">
                             <a id="drop3" href="#"class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                             <ul class="dropdown-menu backgroundChanger">

@@ -32,13 +32,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" title="<?php echo $this->config->item('app_name')?>"><?php echo $this->config->item('app_shortname')?></a>
+            <a class="brand-custom" href="<?php echo base_url() ?>" title="<?php echo $this->config->item('app_name')?>"><span class="logo-sinhs-full"></span></a>
             <div class="nav-collapse collapse">
-                <form class="navbar-form pull-right form-inline" action="<?php echo base_url('sign/in')?>" method="post">
-                    <div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span><input title="nama pengguna" id="user"type="text" name="user-log" autofocus required placeholder="user name" autocomplete="off"/></div>
-                    <div class="input-prepend"><span class="add-on"><i class="icon-lock"></i></span><input title="password pengguna" type="password" name="user-pass" required placeholder="password"></div>
-                    <button type="submit" class="btn btn-primary"><i class="icon-fire icon-white"></i> Login</button>
-                </form>
+                <?php
+                if($this->session->userdata('log_status')){ ?>
+                    <ul class="nav pull-right">
+                        <li id="fat-menu" class="dropdown">
+                            <a id="drop3" href="#"class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->userdata('user_full_name')?> <span class="caret"></span></a>
+                            <ul class="dropdown-menu backgroundChanger">
+                                <li><a href="<?php echo base_url('dashboard')?>">dashboard</a></li>
+                                <li><a href="<?php echo base_url('sign/out')?>">sign out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                <?php }else{ ?>
+                    <a href="<?php echo base_url('sign')?>" class="btn btn-success pull-right"><i class="icon-lock"></i> Sign In</a>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -47,8 +56,6 @@
     <div class="hero-unit">
         <h1>Selamat Datang !</h1>
         <p>Selamat datang di Sistem Informasi Nilai Hasil Studi Fakultas Teknik Universitas Yudharta Pasuruan, di aplikasi yang diperuntukkan bagi mahasiswa Fakultas Teknik UYP ini anda dapat memantau nilai hasil studi dan memprogram FRS. </p>
-        <p>login dengan tombol di bawah ini atau langsung lewat Navigation bar diatas...</p>
-        <p><a class="btn btn-success" href="<?php echo base_url('sign')?>">Login</a></p>
     </div>
 <div id="main-footer">
     <span id="left">&copy; 2013 <a href="<?php echo $this->config->item('author_link')?>"><?php echo $this->config->item('author')?></a></span>

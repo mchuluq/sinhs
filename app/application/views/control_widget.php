@@ -4,13 +4,18 @@
     <?php echo $_embed;?>
 <script>
     function deleteWidget(id){
-        cloudfire.confirm('Apakah anda ingin menghapus widget ini ?',function(r) {
+        alertify.confirm('Apakah anda ingin menghapus widget ini ?',function(r) {
             if(r){
                 $.ajax({
                     url: "<?php echo base_url('control/widget/drop')?>"+"/"+id,
                     dataType: "json",
                     success:function(data){
-                        cloudfire.notification(data.message,{title:data.title,type:data.type});
+                        //cloudfire.notification(data.message,{title:data.title,type:data.type});
+                        $.pnotify({
+                            title: data.title,
+                            text: data.message,
+                            type: data.type
+                        });
                     }
                 });
             }else{

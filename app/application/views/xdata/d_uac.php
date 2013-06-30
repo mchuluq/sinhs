@@ -7,13 +7,18 @@
         $.sinhs.xModal("<?=base_url('control/uac/ugrup')?>"+"/"+id);
     }
     function deleteGroup(id){
-        cloudfire.confirm('Apakah anda ingin menghapus grup '+id+' ?',function(r) {
+        alertify.confirm('Apakah anda ingin menghapus grup '+id+' ?',function(r) {
             if(r){
                 $.ajax({
                     url: "<?=base_url('control/uac/dgrup')?>"+"/"+id,
                     dataType: "json",
                     success:function(data){
-                        cloudfire.notification(data.message,{title:data.title,type:data.type});
+                        $.pnotify({
+                            title: data.title,
+                            text: data.message,
+                            type: data.type
+                        });
+                        //cloudfire.notification(data.message,{title:data.title,type:data.type});
                         $("#uac-content").load("<?=base_url('control/uac/view')?>");
                     }
                 });
@@ -30,7 +35,7 @@
         $.sinhs.xModal("<?=base_url('control/uac/umenu')?>"+"/"+id);
     }
     function deleteMenu(id){
-        cloudfire.confirm('Apakah anda ingin menghapus menu ini ?',function(r) {
+        alertify.confirm('Apakah anda ingin menghapus menu ini ?',function(r) {
             if(r){
                 $.ajax({
                     url: "<?=base_url('control/uac/dmenu')?>"+"/"+id,
@@ -50,7 +55,7 @@
         $.sinhs.xModal("<?=base_url('control/uac/aaccess')?>");
     }
     function deleteAccess(id){
-        cloudfire.confirm('Apakah anda ingin menghapus akses ini ?',function(r) {
+        alertify.confirm('Apakah anda ingin menghapus akses ini ?',function(r) {
             if(r){
                 $.ajax({
                     url: "<?=base_url('control/uac/daccess')?>"+"/"+id,

@@ -5,7 +5,7 @@
     <script>
         function listKhs(){
             $.ajax({
-                url: "<?=base_url('khs/index/grup/0')?>",
+                url: "<?php echo base_url('khs/index/grup/0')?>",
                 success:function(data){
                     $('#khs_data').html(data);
                 }

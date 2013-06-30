@@ -25,7 +25,12 @@
             url:"<?php echo base_url('users/index/status')?>"+"/"+id,
             dataType: "json",
             success: function(data){
-                cloudfire.notification(data.message,{title:data.title,type:data.type});
+                //cloudfire.notification(data.message,{title:data.title,type:data.type});
+                $.pnotify({
+                    title: data.title,
+                    text: data.message,
+                    type: data.type
+                });
                 if(data.type == 'success'){
                     loadCurrentData()
                 }

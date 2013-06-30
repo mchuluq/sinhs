@@ -25,7 +25,12 @@
             url:"<?php echo base_url('users/index/status')?>"+"/"+id,
             dataType: "json",
             success: function(data){
-                cloudfire.notification(data.message,{title:data.title,type:data.type});
+                //cloudfire.notification(data.message,{title:data.title,type:data.type});
+                $.pnotify({
+                    title: data.title,
+                    text: data.message,
+                    type: data.type
+                });
                 if(data.type == 'success'){
                     loadCurrentData();
                 }
@@ -34,13 +39,18 @@
         return false;
     }
     function deleteUser(id){
-        cloudfire.confirm('Apakah anda ingin menghapus user ini ?',function(r) {
+        alertify.confirm('Apakah anda ingin menghapus user ini ?',function(r) {
             if(r){
                 $.ajax({
                     url: "<?php echo base_url('users/index/delete')?>"+"/"+id,
                     dataType: "json",
                     success:function(data){
-                        cloudfire.notification(data.message,{title:data.title,type:data.type});
+                        //cloudfire.notification(data.message,{title:data.title,type:data.type});
+                        $.pnotify({
+                            title: data.title,
+                            text: data.message,
+                            type: data.type
+                        });
                         if(data.type=='success'){
                             loadCurrentData();
                         }

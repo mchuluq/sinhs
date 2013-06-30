@@ -8,7 +8,7 @@
             var safe = cari.replace(/\s/g,"");
             var limit = $("select#limitbox").val();
             $.ajax({
-                url: "<?=base_url('frs/index/grup/0')?>"+"/"+limit+"/"+ safe,
+                url: "<?php echo base_url('frs/index/grup/0')?>"+"/"+limit+"/"+ safe,
                 success:function(data){
                     $('#frs_data').html(data);
                 }

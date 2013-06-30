@@ -9,7 +9,12 @@
                 data: $(this).serialize(),
                 cache:false,
                 success: function(data){
-                    cloudfire.notification(data.message,{title:data.title,type:data.type});
+                    //cloudfire.notification(data.message,{title:data.title,type:data.type});
+                    $.pnotify({
+                        title: data.title,
+                        text: data.message,
+                        type: data.type
+                    });
                     if(data.type == 'success'){
                         $.sinhs.close_modal();
                         $("#uac-content").load("<?=base_url('control/uac/view')?>");

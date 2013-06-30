@@ -18,7 +18,12 @@
         echo "peringatan +='Email anda belum diisi <br/>';";
     }?>
         if(peringatan.length > 0){
-            cloudfire.notification(peringatan,{title:'account',type:'info',autoHide:true,delay:4000});
+            //cloudfire.notification(peringatan,{title:'account',type:'info',autoHide:true,delay:4000});
+            $.pnotify({
+                title:'Account',
+                text: peringatan,
+                type: 'info'
+            });
         }
     });
 </script>

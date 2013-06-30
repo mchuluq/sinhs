@@ -11,6 +11,16 @@
 <link href="<?php echo base_url()?>assets/plugins/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 <script src="<?php echo base_url()?>assets/plugins/bootstrap/js/bootstrap.js"></script>
 
+<!-- load alertify -->
+<link href="<?php echo base_url()?>assets/plugins/alertify/themes/alertify.core.css" rel="stylesheet">
+<link href="<?php echo base_url()?>assets/plugins/alertify/themes/alertify.bootstrap.css" rel="stylesheet">
+<script src="<?php echo base_url()?>assets/plugins/alertify/alertify.min.js"></script>
+
+<!-- load pnotify -->
+<link href="<?php echo base_url()?>assets/plugins/pnotify/jquery.pnotify.default.css" rel="stylesheet">
+<script src="<?php echo base_url()?>assets/plugins/pnotify/jquery.pnotify.min.js"></script>
+
+
 <!-- load cloudfire-js -->
 <link href="<?php echo base_url()?>assets/plugins/cloudfire/css/cloudfire-js.css" rel="stylesheet">
 <script src="<?php echo base_url()?>assets/plugins/cloudfire/js/jquery.cloudfire.js"></script>

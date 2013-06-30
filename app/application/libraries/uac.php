@@ -53,9 +53,13 @@ class Uac {
                 );
                 $this->CI->session->set_userdata($log_data);
                 $this->_update_logdata($row->user_id);
-                return TRUE;
-            }else{ return FALSE; }
-        }else{ return FALSE; }
+                return '0';
+            }else{
+                return '1';
+            }
+        }else{
+            return '2';
+        }
     }
     function logout(){
         $this->CI->session->sess_destroy();

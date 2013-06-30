@@ -11,7 +11,12 @@
                    url: $(this).attr('href'),
                    dataType: "json",
                    success: function(data){
-                       cloudfire.notification(data.message,{title:data.title,type:data.type});
+                       //cloudfire.notification(data.message,{title:data.title,type:data.type});
+                       $.pnotify({
+                           title: data.title,
+                           text: data.message,
+                           type: data.type
+                       });
                    }
                });
            }) ;

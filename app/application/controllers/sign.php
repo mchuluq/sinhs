@@ -17,21 +17,29 @@ class Sign extends CI_Controller{
         $this->in();
     }
     function in(){
-    	$data['title'] = 'login';
-        $this->form_validation->set_rules('user-log','nama pengguna','required');
-        $this->form_validation->set_rules('user-pass','password pengguna','required');
-        if($this->form_validation->run() == TRUE){
-            $user = $this->input->post('user-log');
-            $pass = $this->input->post('user-pass');
-            $login = $this->uac->login($user,$pass);
-            if($login){
-                redirect('dashboard');
-            }else{
-                $this->session->set_flashdata('error',"username atau password tidak dikenal");
-                redirect('sign/in');
-            };
+        if($this->session->userdata('log_status')){
+            redirect(base_url('dashboard'));
         }else{
-            $this->load->view('login',$data);
+            $data['title'] = 'login';
+            $this->form_validation->set_rules('user-log','nama pengguna','required');
+            $this->form_validation->set_rules('user-pass','password pengguna','required');
+            if($this->form_validation->run() == TRUE){
+                $user = $this->input->post('user-log');
+                $pass = $this->input->post('user-pass');
+                $login = $this->uac->login($user,$pass);
+                if($login == '0'){
+                    redirect('dashboard');
+                }elseif($login == '1'){
+                    $this->session->set_flashdata('error',"password anda tidak dikenali");
+                    $this->session->set_flashdata('uname',$user);
+                    redirect('sign/in');
+                }elseif($login == '2'){
+                    $this->session->set_flashdata('error',"username tidak dikenal");
+                    redirect('sign/in');
+                };
+            }else{
+                $this->load->view('login',$data);
+            }
         }
     }
     function out(){
