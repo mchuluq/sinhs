@@ -1,7 +1,7 @@
 S.I.N.H.S
 ==========
 
-Aplikasi Sistem Informasi nilai Hasil Studi Untuk Skripsi berbasis CodeIgniter.
+SINFOLASTUD - Sistem Informasi nilai Hasil Studi Untuk Skripsi berbasis CodeIgniter.
 
 Authors
 ----------
@@ -10,10 +10,15 @@ Mochammad Chusnul Chuluq
 
 Credits
 ----------
+ + core
+  - CodeIgniter
+  - Twitter Bootstrap
+  - jQuery
 
-- CodeIgniter
-- Twitter Bootstrap
-- Highcharts JS
-- elFinder
+ + plugins
+  - Highcharts-JS
+  - elFinder
+  - alertify
+  - pnotify
 
 Copyright 2013 @ not-licensed
