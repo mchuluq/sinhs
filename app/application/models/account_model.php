@@ -20,8 +20,16 @@ class Account_model extends CI_Model{
     }
 
     function updateData($data){
-        $this->db->where('user_id', $data['user_id']);
-        $this->db->update($this->user_tbl, $data);
+        $select = $this->db->get_where($this->user_tbl,array('user_name'=>$data['user_name']));
+        if ($select->num_rows() != 0)
+        {
+            return '0';
+        }else{
+            $this->db->where('user_id', $data['user_id']);
+            $this->db->update($this->user_tbl, $data);
+            return '1';
+        }
+
     }
     function updateSession($data){
         $log_data = array(

@@ -16,7 +16,7 @@ require_once './assets/plugins/elfinder/php/elFinderVolumeLocalFileSystem.class.
 class elfinder_lib {
     var $elfinder_path = 'assets/plugins/elfinder';
     var $path = './';
-    var $url =  'myfile';
+    var $url =  '';
     var $elfinder_place = '#tempatnya-elfinder';
     var $elfinder_url = 'control/explorer/elfinder';
 

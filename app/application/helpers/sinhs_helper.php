@@ -84,32 +84,86 @@ function createFrsGrup($nim,$smtr,$thn,$fp){
     return $nim.'-'.$thn1.'/'.$thn2.'-'.$smtr.'-'.$prod[1];
 }
 function nilaiHuruf($nilai){
-    if($nilai >= 93 AND $nilai <= 100){
+    if($nilai >= 86 AND $nilai <= 100){
         $huruf = 'A';
-    }elseif($nilai >= 90 AND $nilai <= 92){
+    }elseif($nilai >= 81 AND $nilai <= 85){
         $huruf = 'A-';
-    }elseif($nilai >= 87 AND $nilai <= 89){
+    }elseif($nilai >= 76 AND $nilai <= 80){
         $huruf = 'B+';
-    }elseif($nilai >= 83 AND $nilai <= 86){
+    }elseif($nilai >= 70 AND $nilai <= 75){
         $huruf = 'B';
-    }elseif($nilai >= 80 AND $nilai <= 82){
+    }elseif($nilai >= 66 AND $nilai <= 69){
         $huruf = 'B-';
-    }elseif($nilai >= 77 AND $nilai <= 79){
+    }elseif($nilai >= 61 AND $nilai <= 65){
         $huruf = 'C+';
-    }elseif($nilai >= 73 AND $nilai <= 76){
+    }elseif($nilai >= 56 AND $nilai <= 60){
         $huruf = 'C';
-    }elseif($nilai >= 70 AND $nilai <= 72){
-        $huruf = 'C-';
-    }elseif($nilai >= 67 AND $nilai <= 69){
-        $huruf = 'D+';
-    }elseif($nilai >= 63 AND $nilai <= 66){
+    }elseif($nilai >= 41 AND $nilai <= 55){
         $huruf = 'D';
-    }elseif($nilai >= 60 AND $nilai <= 62){
-        $huruf = 'D-';
-    }elseif($nilai <= 59){
-        $huruf = 'F';
+    }elseif($nilai <= 41){
+        $huruf = 'E';
     }else{
         $huruf =null;
     }
     return $huruf;
+}
+function nilaiSksn($huruf,$sks){
+    switch($huruf){
+        case 'A' :
+            $sksn = '4';
+            break;
+        case 'A-' :
+            $sksn = '3.7';
+            break;
+        case 'B+' :
+            $sksn = '3.3';
+            break;
+        case 'B' :
+            $sksn = '3';
+            break;
+        case 'B-' :
+            $sksn = '2.7';
+            break;
+        case 'C+' :
+            $sksn = '2.3';
+            break;
+        case 'C' :
+            $sksn = '2';
+            break;
+        case 'D' :
+            $sksn = '1';
+            break;
+        case 'E' :
+            $sksn = '0';
+            break;
+        default :
+            $sksn = null;
+            break;
+    }
+    return $sksn * $sks;
+}
+
+function countIpK($data){
+    $t_sksn = 0;
+    $t_sks = 0;
+    foreach($data as $frs):
+        if($frs['frs_status'] == '1'){
+            $t_sksn = $t_sksn + nilaiSksn($frs['frs_nilai_huruf'],$frs['mk_sks']);
+            $t_sks = $t_sks + $frs['mk_sks'];
+        }
+    endforeach;
+    $ipm = round($t_sksn,2) / $t_sks;
+    $ip = round($ipm,2);
+    return array('total_sks'=>$t_sks,'total_sksn'=>$t_sksn,'ip'=>$ip);
+}
+function countIpS($data){
+    $t_sksn = 0;
+    $t_sks = 0;
+    foreach($data as $frs):
+        $t_sksn = $t_sksn + nilaiSksn($frs['frs_nilai_huruf'],$frs['mk_sks']);
+        $t_sks = $t_sks + $frs['mk_sks'];
+    endforeach;
+    $ipm = round($t_sksn,2) / $t_sks;
+    $ip = round($ipm,2);
+    return array('total_sks'=>$t_sks,'total_sksn'=>$t_sksn,'ip'=>$ip);
 }

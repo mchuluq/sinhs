@@ -5,7 +5,7 @@
     <script>
         function listfrsg(){
             $.ajax({
-                url: "<?=base_url('frs/mahasiswa/grup/0')?>",
+                url: "<?php echo base_url('frs/mahasiswa/grup/0')?>",
                 success:function(data){
                     $('#frs_data').html(data);
                 }

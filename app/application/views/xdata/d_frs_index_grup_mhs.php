@@ -1,17 +1,3 @@
-<script>
-    $(document).ready(function(){
-        $('.frs_det').click(function(e){
-            e.preventDefault();
-            $.ajax({
-                url: $(this).attr('href'),
-                success:function(data){
-                    $('#frs_data').html(data);
-                }
-            });
-
-        })
-    })
-</script>
 <table id="frs_grouped"class="table table-striped table-hover table-condensed ch-table">
     <thead>
     <tr>
@@ -33,7 +19,7 @@
             <td><?php echo $frs['frs_fak_prod'];?></td>
             <td><?php echo $frs['user_full_name'];?></td>
             <td><?php echo $frs['total_matkul'];?></td>
-            <td><a class="frs_det" href="<?php echo base_url("frs/mahasiswa/detail").'/'.$frs['frs_grup']?>">Lihat Detil</a></td>
+            <td><a href="<?php echo base_url("frs/mahasiswa/detail").'/'.$frs['frs_grup']?>">Lihat Detil</a></td>
         </tr>
     <?php endforeach ?>
     </tbody>

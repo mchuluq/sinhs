@@ -50,17 +50,17 @@ class Sinhs_model extends CI_Model{
     }
 
     function getMhsProfile($id){
-        $query = mysql_query("SELECT * FROM ".$this->user_tbl." WHERE ".$this->user_pk." = $id");
+        $query = mysql_query("SELECT * FROM ".$this->mhs_view." WHERE ".$this->user_pk." = $id");
         $data =  mysql_fetch_array($query);
-        $meta = explode('|',$data['user_meta']);
+        //$meta = explode('|',$data['user_meta']);
         $user['user_id'] = $data['user_id'];
         $user['user_name'] = $data['user_name'];
         $user['user_full_name'] = $data['user_full_name'];
         $user['nim'] = $data['user_code'];
 
-        $user['fak_prod'] = $meta[0];
-        $user['thn_angkatan'] = $meta[1];
-        $user['program'] = $meta[2];
+        $user['fak_prod'] = $data['mhs_fak_prodi'];
+        $user['thn_angkatan'] = $data['mhs_angkatan'];
+        $user['program'] = $data['mhs_program'];
         return $user;
     }
 
@@ -115,6 +115,20 @@ class Sinhs_model extends CI_Model{
         $this->db->delete($this->mk_tbl);
     }
 
+    function getListThnAjar(){
+        $query = $this->db->query("SELECT DISTINCT(mk_thn_ajar) AS mk_thn_ajar FROM ".$this->mk_v."");
+        return $query->result_array();
+    }
+
+    function sebaranMK($thn_ajar,$fp){
+        $this->db->order_by('mk_semester','asc');
+        $query =$this->db->get_where($this->mk_tbl,array(
+            'mk_thn_ajar'=>$thn_ajar,
+            'mk_fak_prod'=>$fp
+        ));
+        return $query->result_array();
+    }
+
     //model untuk controller FRS
     function getMkFor($semester,$thn_ajar,$fak_prod){
         $where = array('mk_semester'=>$semester,'mk_thn_ajar'=>$thn_ajar,'mk_fak_prod'=>$fak_prod);
@@ -165,6 +179,10 @@ class Sinhs_model extends CI_Model{
         $this->db->order_by('frs_grup','desc');
         $query = $this->db->get($this->frs_v);
         return $query->result_array();
+    }
+    function getSingleFrsForMhs($frs_grup){
+        $query = mysql_query("SELECT * FROM ".$this->frs_v." WHERE frs_grup = '$frs_grup' ");
+        return mysql_fetch_array($query);
     }
     function deleteFrs($id){
         $this->db->where($this->frs_pk,$id);
@@ -241,6 +259,10 @@ class Sinhs_model extends CI_Model{
 
 
     //KHS model
+    function getSingleFrsGrouped($frs_grup){
+        $query = mysql_query("SELECT * FROM ".$this->frs_v." WHERE frs_grup = '$frs_grup' ");
+        return mysql_fetch_array($query);
+    }
     function getKhsDetail($frs_grup){
         $query =$this->db->get_where($this->khs_detail_v,array('frs_grup'=>$frs_grup));
         return $query->result_array();
@@ -249,4 +271,6 @@ class Sinhs_model extends CI_Model{
         $query =$this->db->get_where($this->khs_detail_v,array('user_id'=>$id));
         return $query->result_array();
     }
+
+
 }

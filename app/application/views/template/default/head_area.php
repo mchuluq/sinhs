@@ -1,15 +1,8 @@
-<?php
-$uri = $this->uri->uri_string();
-$crumbs = explode('/',$uri);
-?>
 <div class="span9">
     <ul class="crumbs">
         <li><a href="<?php echo base_url() ?>"><i class="icon icon-home"></i></a></li>
-        <?php foreach($crumbs as $crumb):
-            if(!is_numeric($crumb)){ ?>
-                <li><a><?php echo str_replace(array('_','%20'),' ',str_replace(':','/',$crumb)) ?></a></li>
-            <?php }
-        endforeach ?>
+        <li><a><?php echo $this->uri->rsegment(1)?></a></li>
+        <li><a><?php echo $this->uri->rsegment(2)?></a></li>
     </ul>
 </div>
 <div class="span3">

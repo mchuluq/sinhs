@@ -66,7 +66,7 @@ class Frs extends Member_Controller{
     private function _listFrsDetail($frs_grup1,$frs_grup2){
         $frs_grup = str_replace('%20',' ',$frs_grup1.'/'.$frs_grup2);
         $data['frs_detail']=$this->sinhs_model->getFrsDetail($frs_grup);
-        $this->load->view('xdata/d_frs_index_detil',$data);
+        $this->template->display('frs_index_detail','data FRS',$data);
     }
 
     //membuat frs baru untuk mahasiswa
@@ -179,7 +179,8 @@ class Frs extends Member_Controller{
     private function _listFrsForMhsDetail($frs_grup1,$frs_grup2){
         $frs_grup = str_replace('%20',' ',$frs_grup1.'/'.$frs_grup2);
         $data['frs_detail']=$this->sinhs_model->getFrsDetail($frs_grup);
-        $this->load->view('xdata/d_frs_index_detil_mhs',$data);
+        $data['frs']=$this->sinhs_model->getSingleFrsForMhs($frs_grup);
+        $this->template->display('frs_index_mhs_detail','Data FRS',$data);
     }
 
     //hapus FRS

@@ -1,17 +1,3 @@
-<script>
-    $(document).ready(function(){
-        $('.khs_det').click(function(e){
-            e.preventDefault();
-            $.ajax({
-                url: $(this).attr('href'),
-                success:function(data){
-                    $('#khs_data').html(data);
-                }
-            });
-
-        })
-    })
-</script>
 <table id="khs_grouped"class="table table-striped table-hover table-condensed ch-table">
     <thead>
     <tr>
@@ -29,7 +15,7 @@
             <td><?php echo $khs['frs_semester'];?></td>
             <td><?php echo $khs['frs_thn_ajar'];?></td>
             <td><?php echo $khs['total_matkul'];?></td>
-            <td><a class="khs_det" href="<?php echo base_url("khs/index/detail").'/'.$khs['frs_grup']?>">Lihat Detil</a></td>
+            <td><a href="<?php echo base_url("khs/index/detail").'/'.$khs['frs_grup']?>">Lihat Detil</a></td>
         </tr>
     <?php endforeach ?>
     </tbody>

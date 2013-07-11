@@ -32,10 +32,15 @@ class Account extends Member_Controller{
                 $data['user_name'] = $this->input->post('user_name');
                 $data['user_contact'] = $this->input->post('user_contact');
                 $data['user_email'] = $this->input->post('user_email');
-                $this->account_model->updateData($data);
-                $this->account_model->updateSession($data);
-                $this->account_model->checkDefaultData($data['user_id']);
-                $notif= array('title'=>'Account','message'=>'sukses memperbarui data akun','type'=>'success');
+
+                $send = $this->account_model->updateData($data);
+                if($send == '1'){
+                    $this->account_model->updateSession($data);
+                    $this->account_model->checkDefaultData($data['user_id']);
+                    $notif= array('title'=>'Account','message'=>'sukses memperbarui data akun','type'=>'success');
+                }elseif($send == '0'){
+                    $notif= array('title'=>'Account','message'=>'username "'.$this->input->post('user_name').'" tidak dapat digunakan ','type'=>'error');
+                };
             }else{
                 $notif= array('title'=>'Account','message'=>validation_errors(),'type'=>'error');
             }

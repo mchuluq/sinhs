@@ -20,12 +20,13 @@
         });
     }
     function v_detail(id){
-        $.ajax({
+        /*$.ajax({
             url: '<?php echo base_url("matakuliah/index/detail")?>/'+id,
             success:function(data){
                 $('#mk_data').html(data);
             }
-        });
+        });*/
+        document.location = '<?php echo base_url("matakuliah/index/detail")?>/'+id;
     }
     $(document).ready(function(){
         $(".ch-pagination a").click(function(e){

@@ -24,24 +24,14 @@
             e.preventDefault();
             var offset = $(this).attr('id');
             if(offset != undefined){
-                var url = "<?php echo base_url('matakuliah/index/grup')?>"+"/"+offset;
+                var url = "<?php echo base_url('nilai/index/grup')?>"+"/"+offset;
                 loadData(url);
             }
         })
         $("#formSearch").submit(function(e){
             e.preventDefault;
-            loadData("<?php echo base_url('matakuliah/index/grup/0');?>");
+            loadData("<?php echo base_url('nilai/index/grup/0');?>");
             return false;
-        })
-        $('a.v_detil').click(function(e){
-            e.preventDefault();
-            $.ajax({
-                url: $(this).attr('href'),
-                success:function(data){
-                    $('#nilai_data').html(data);
-                }
-            });
-
         })
     })
 </script>
@@ -66,7 +56,7 @@
             <td><?php echo $mk['mk_fak_prod'];?></td>
             <td><?php echo $mk['total_matkul'];?></td>
             <td><?php echo $mk['total_sks'];?></td>
-            <td><a class="v_detil" href="<?php echo base_url("nilai/index/detail/".$mk['mk_grup'])?>">Lihat Detil</a></td>
+            <td><a href="<?php echo base_url("nilai/index/detail/".$mk['mk_grup'])?>">Lihat Detil</a></td>
         </tr>
     <?php endforeach ?>
     </tbody>

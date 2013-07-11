@@ -47,7 +47,7 @@ class Nilai extends Member_Controller{
     private function _listMkDetail($mk_grup1,$mk_grup2){
         $mk_grup = str_replace('%20',' ',$mk_grup1.'/'.$mk_grup2);
         $data['mk_detail']=$this->sinhs_model->getMkDetail($mk_grup);
-        $this->load->view('xdata/d_nilai_index_detil',$data);
+        $this->template->display('nilai_index_detail','Nilai',$data);
     }
 
     function input($mk_id){
@@ -60,6 +60,7 @@ class Nilai extends Member_Controller{
                      $data = array(
                         'frs_nilai_angka'=>safeInput($_POST['frs_nilai_angka'][$i]),
                         'frs_nilai_huruf'=>nilaiHuruf($_POST['frs_nilai_angka'][$i]),
+                        'frs_status'=>'1',
                         'frs_id'=>safeInput($_POST['frs_id'][$i])
                     );
                     $this->sinhs_model->fillNilai($data);

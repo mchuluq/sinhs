@@ -34,8 +34,10 @@ class Khs extends Member_Controller{
     }
     private function _listKhsForMhsDetail($khs_grup1,$khs_grup2){
         $khs_grup = str_replace('%20',' ',$khs_grup1.'/'.$khs_grup2);
+        $data['khs'] = $this->sinhs_model->getSingleFrsGrouped($khs_grup);
         $data['khs_detail']=$this->sinhs_model->getKhsDetail($khs_grup);
-        $this->load->view('xdata/d_khs_index_detil',$data);
+        $data['transkrip'] = $this->sinhs_model->getTranskrip($this->session->userdata('user_id'));
+        $this->template->display('khs_index_detail','KHS',$data);
     }
 
     function transkrip(){

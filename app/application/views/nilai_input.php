@@ -3,43 +3,11 @@
 <head>
     <?php echo $_embed;?>
     <script>
-        function nilaiHuruf(nilai){
-            var huruf = '';
-            if(nilai >= 93 && nilai <= 100){
-                huruf = 'A';
-            }else if(nilai >= 90 && nilai <= 92){
-                huruf = 'A-';
-            }else if(nilai >= 87 && nilai <= 89){
-                huruf = 'B+';
-            }else if(nilai >= 83 && nilai <= 86){
-                huruf = 'B';
-            }else if(nilai >= 80 && nilai <= 82){
-                huruf = 'B-';
-            }else if(nilai >= 77 && nilai <= 79){
-                huruf = 'C+';
-            }else if(nilai >= 73 && nilai <= 76){
-                huruf = 'C';
-            }else if(nilai >= 70 && nilai <= 72){
-                huruf = 'C-';
-            }else if(nilai >= 67 && nilai <= 69){
-                huruf = 'D+';
-            }else if(nilai >= 63 && nilai <= 66){
-                huruf = 'D';
-            }else if(nilai >= 60 && nilai <= 62){
-                huruf = 'D-';
-            }else if(nilai <= 59){
-                huruf = 'F';
-            }else{
-                huruf ='Tidak Diketahui';
-            }
-            return huruf;
-        }
-
         $(document).ready(function(){
             $.sinhs.xForm('#input_nilai');
             $(".nilaiAngka").keyup(function(){
                 var value = $(this).val();
-                $(this).parent().parent().find('.nilaiHuruf').text(nilaiHuruf(value));
+                $(this).parent().parent().find('.nilaiHuruf').text($.sinhs.nilaiHuruf(value));
             })
         })
     </script>

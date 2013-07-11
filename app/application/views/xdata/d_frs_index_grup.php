@@ -20,16 +20,6 @@
         });
     }
     $(document).ready(function(){
-        $('.frs_det').click(function(e){
-            e.preventDefault();
-            $.ajax({
-                url: $(this).attr('href'),
-                success:function(data){
-                    $('#frs_data').html(data);
-                }
-            });
-
-        })
         $(".ch-pagination a").click(function(e){
             e.preventDefault();
             var offset = $(this).attr('id');
@@ -66,7 +56,7 @@
             <td><?php echo $frs['frs_fak_prod'];?></td>
             <td><b><?php echo $frs['user_full_name'];?></b> ( <?php echo $frs['user_code'];?> )</td>
             <td><?php echo $frs['total_matkul'];?></td>
-            <td><a class="frs_det" href="<?php echo base_url("frs/index/detail").'/'.$frs['frs_grup']?>">Lihat Detil</a></td>
+            <td><a href="<?php echo base_url("frs/index/detail").'/'.$frs['frs_grup']?>">Lihat Detil</a></td>
         </tr>
     <?php endforeach ?>
     </tbody>

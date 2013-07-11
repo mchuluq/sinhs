@@ -28,7 +28,7 @@ class matakuliah extends Member_Controller{
         $this->form_validation->set_rules('mk_thn_ajar','tahun ajaran','required|exact_length[9]');
         $this->form_validation->set_rules('mk_fak_prod','Fakultas / Prodi','required|max_length[60]');
         $this->form_validation->set_rules('mk_kode[]','Kode MK','max_length[15]');
-        $this->form_validation->set_rules('mk_nama[]','Matakuliah','required|max_length[30]');
+        $this->form_validation->set_rules('mk_nama[]','Matakuliah','required|max_length[60]');
         $this->form_validation->set_rules('mk_sks[]','SKS','required|is_natural_no_zero|max_length[1]');
         $this->form_validation->set_rules('mk_dosen[]','Dosen','max_length[50]');
         if($this->form_validation->run()==TRUE){
@@ -55,7 +55,7 @@ class matakuliah extends Member_Controller{
     private function _listMkDetail($mk_grup1,$mk_grup2){
         $mk_grup = str_replace('%20',' ',$mk_grup1.'/'.$mk_grup2);
         $data['mk_detail']=$this->sinhs_model->getMkDetail($mk_grup);
-        $this->load->view('xdata/d_matakuliah_index_detil',$data);
+        $this->template->display('matakuliah_index_detail','Data Matakuliah',$data);
     }
 
     //public area
@@ -95,7 +95,7 @@ class matakuliah extends Member_Controller{
                 $this->sinhs_model->insertMk($multi);
                 $notif= array('title'=>'Sukses','message'=>$total_field.' Matakuliah telah disimpan','type'=>'success');
             }else{
-                $notif= array('title'=>'Sukses','message'=>validation_errors(),'type'=>'warning');
+                $notif= array('title'=>'Validasi','message'=>validation_errors(),'type'=>'warning');
             }
             echo json_encode($notif);
         }else{
@@ -141,5 +141,25 @@ class matakuliah extends Member_Controller{
         $this->sinhs_model->deleteMk($id);
         $notif= array('title'=>'Sukses','message'=>'Matakuliah Sukses dihapus','type'=>'success');
         echo json_encode($notif);
+    }
+
+    //sebaran mata kuliah
+    function sebaran(){
+        if($_POST){
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('thn_ajar','Tahun ajar','required');
+            $this->form_validation->set_rules('fp','Fakultas Prodi','required');
+            if($this->form_validation->run()==TRUE){
+                $data['matkul'] = $this->sinhs_model->sebaranMk($this->input->post('thn_ajar'),$this->input->post('fp'));
+                $data['ta'] = $this->input->post('thn_ajar');
+                $data['fp'] = $this->input->post('fp');
+                $this->load->view('xdata/d_matakuliah_sebaran',$data);
+            }
+        }else{
+            $data['thn_ajar'] = $this->sinhs_model->getListThnAjar();
+            $data['fp_list'] = $this->sinhs_model->getFpList();
+            $this->template->display('matakuliah_sebaran','Sebaran Matakuliah',$data);
+        }
+
     }
 }
