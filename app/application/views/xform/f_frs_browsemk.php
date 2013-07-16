@@ -17,10 +17,10 @@
 <table id="frs_browse" class="table table-condensed table-striped table-hover" id="mk_detail" title="Klik untuk memilih matakuliah yang ditambahkan" style="cursor:pointer">
     <thead>
     <tr>
-        <td>Kode MK</td>
-        <td>Matakuliah</td>
-        <td>SKS</td>
-        <td>Dosen</td>
+        <th>Kode MK</th>
+        <th>Matakuliah</th>
+        <th>SKS</th>
+        <th>Dosen</th>
     </tr>
     </thead>
     <tbody>

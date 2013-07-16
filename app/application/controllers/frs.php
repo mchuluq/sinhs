@@ -151,7 +151,7 @@ class Frs extends Member_Controller{
         $gg = ($semester % 2 == 0) ? 'gnp':'gnj';
         $ta = $thn1.'/'.$thn2;
         $fp = str_replace('%20',' ',$fp1);
-        $data['listMk'] = $this->sinhs_model->browseMk($gg,$ta,$fp);
+        $data['listMk'] = $this->sinhs_model->browseMk($gg,$ta,$fp,$semester);
         //echo $gg.' | '.$ta.' | '.$fp;
         $this->load->view('xform/f_frs_browsemk',$data);
     }

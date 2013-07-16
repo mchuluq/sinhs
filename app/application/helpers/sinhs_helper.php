@@ -167,3 +167,20 @@ function countIpS($data){
     $ip = round($ipm,2);
     return array('total_sks'=>$t_sks,'total_sksn'=>$t_sksn,'ip'=>$ip);
 }
+
+function tingkatKelulusan($ipk){
+    if($ipk >= 3.5 and $ipk <= 4){
+        $tk = "Cumlaude";
+    }elseif($ipk < 3.5 and $ipk >= 3){
+        $tk = "Sangat Memuaskan";
+    }elseif($ipk < 3 and $ipk >= 2.5){
+        $tk = "Baik";
+    }elseif($ipk < 2.5 and $ipk >= 2){
+        $tk = "Cukup";
+    }elseif($ipk < 2){
+        $tk = "Kurang";
+    }else{
+        $tk = "tidak diketahui";
+    }
+    return $tk;
+}

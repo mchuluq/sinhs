@@ -33,13 +33,13 @@
                             <div class="ch-article-content">
                                 <form id="sbr_mk" method="POST" action="<?php echo base_url('matakuliah/sebaran')?>" class="form-inline">
                                     <select name="thn_ajar">
-                                    <?php foreach($thn_ajar as $ta ):?>
-                                        <option><?php echo $ta['mk_thn_ajar']?></option>
-                                    <?php endforeach;?>
+                                        <?php foreach($thn_ajar as $ta ):?>
+                                            <option value="<?php echo $ta['mk_thn_ajar']?>"><?php echo $ta['mk_thn_ajar']?></option>
+                                        <?php endforeach;?>
                                     </select>
                                     <select name="fp"">
                                     <?php foreach($fp_list as $fp ):?>
-                                        <option><?php echo $fp['fp_fak_prodi']?></option>
+                                        <option value="<?php echo $fp['fp_fak_prodi']?>"><?php echo $fp['fp_fak_prodi']?></option>
                                     <?php endforeach;?>
                                     </select>
                                     <button class="btn" type="submit"><i class="icn icon-search"></i> Cari</button>

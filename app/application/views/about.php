@@ -42,7 +42,7 @@
                                             <p class="smaller">version <?php echo $this->config->item('app_version')?></p>
                                         </div>
                                         <div class="desc">
-                                            <p>SINHS merupakan sebuah aplikasi yang dibangun dalam rangka memenuhi tugas penelitian skripsi bagi author, untuk mengelolah data studi mahasiswa , utamanya dalam hal nilai hasil studi mahasiswa untuk Fakultas Teknik Universitas Yudharta Pasuruan.</p>
+                                            <p>SINFOLASTUD merupakan sebuah aplikasi yang dibangun dalam rangka memenuhi tugas penelitian skripsi bagi author, untuk mengelolah data studi mahasiswa , utamanya dalam hal nilai hasil studi mahasiswa untuk Fakultas Teknik Universitas Yudharta Pasuruan.</p>
                                             <p>Aplikasi ini di bangun dengan menggunakan bahasa scripting PHP dan Framework CodeIgniter dengan sistem basis data MySQL. </p>
                                         </div>
                                         <p class="smaller"><?php echo $this->config->item('app_name')?></p>

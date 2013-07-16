@@ -1,8 +1,8 @@
 <div class="span9">
     <ul class="crumbs">
         <li><a href="<?php echo base_url() ?>"><i class="icon icon-home"></i></a></li>
-        <li><a><?php echo $this->uri->rsegment(1)?></a></li>
-        <li><a><?php echo $this->uri->rsegment(2)?></a></li>
+        <li><a href="<?php echo base_url($this->uri->rsegment(1))?>"><?php echo $this->uri->rsegment(1)?></a></li>
+        <li><a class="active"><?php echo $this->uri->rsegment(2)?></a></li>
     </ul>
 </div>
 <div class="span3">

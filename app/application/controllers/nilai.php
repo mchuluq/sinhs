@@ -116,8 +116,14 @@ class Nilai extends Member_Controller{
         $this->load->view('xdata/d_nilai_dosen',$data);
     }
 
-    function transkrip_mahasiswa($id,$stat='transkrip',$frs_id=null){
+    function transkrip_mahasiswa($stat=null,$id=null,$frs_id=null){
         switch($stat){
+            default:
+                $this->template->display('nilai_transkrip_search','Pencarian Transkrip');
+                break;
+            case 'search':
+                $this->searchMhsForTranskrip();
+                break;
             case 'transkrip':
                 $this->getTranskrip($id);
                 break;
@@ -131,6 +137,7 @@ class Nilai extends Member_Controller{
     private function getTranskrip($id){
         if(empty($id)){echo file_get_contents(base_url('error/e500')); exit;}
         $data['transkrip']=$this->sinhs_model->getTranskrip($id);
+        $data['mhs'] = $this->sinhs_model->getMhsProfile($id);
         $data['id'] = $id;
         $this->template->display('nilai_transkrip','Transkrip',$data);
     }
@@ -138,5 +145,13 @@ class Nilai extends Member_Controller{
         $data = array('frs_status'=>$stat,'frs_id'=>$frsId);
         $this->sinhs_model->updateFrsStatus($data);
         echo json_encode(array('title'=>'Sukses','message'=>'Status Matakuliah telah diubah','type'=>'success'));
+    }
+    private function searchMhsForTranskrip(){
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('searchbox','kata kunci pencarian','required');
+        if($this->form_validation->run()){
+            $data['users'] = $this->sinhs_model->getMahasiswaList(0,20,$this->input->post('searchbox'));
+            $this->load->view('xdata/d_nilai_transkrip_mahasiswa',$data);
+        }
     }
 }

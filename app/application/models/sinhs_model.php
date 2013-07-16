@@ -189,8 +189,8 @@ class Sinhs_model extends CI_Model{
         $this->db->delete($this->frs_tbl);
     }
 
-    function browseMk($gg,$ta,$fp){
-        $query = $this->db->query("SELECT * FROM ".$this->mk_tbl." WHERE mk_thn_ajar = '$ta' AND mk_fak_prod LIKE '%$fp%' AND mk_grup LIKE '%$gg%';");
+    function browseMk($gg,$ta,$fp,$ns){
+        $query = $this->db->query("SELECT * FROM ".$this->mk_tbl." WHERE mk_thn_ajar = '$ta' AND mk_fak_prod LIKE '%$fp%' AND mk_grup LIKE '%$gg%' AND mk_semester <> '$ns';");
         return $query->result_array();
     }
 

@@ -38,6 +38,21 @@
                             <header>Transkrip</header>
                             <div class="ch-article-content">
                                 <div id="khs_data">
+                                    <div id="frs_content">
+                                        <table class="table table-condensed" style="width:50%;">
+                                            <tr>
+                                                <th>Nama Mahasiswa</th>
+                                                <td class="dotted"><?php echo $mhs['user_full_name']?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Fakultas / Jurusan</th>
+                                                <td class="dotted"><?php echo $mhs['fak_prod']?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Nim</th>
+                                                <td class="dotted"><?php echo $mhs['nim']?></td>
+                                            </tr>
+                                        </table>
                                     <table id="khs_detail"class="table table-condensed ch-table">
                                         <thead>
                                         <tr>

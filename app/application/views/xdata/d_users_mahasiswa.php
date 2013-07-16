@@ -71,7 +71,7 @@
             } else if(act=='change'){
                 changeStatus($(el).attr('id'));
             }else if(act=='transkrip'){
-                document.location = "<?php echo base_url('nilai/transkrip_mahasiswa');?>"+"/"+$(el).attr('id');
+                document.location = "<?php echo base_url('nilai/transkrip_mahasiswa');?>"+"/transkrip/"+$(el).attr('id');
             }
         });
     })

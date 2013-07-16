@@ -2,6 +2,16 @@
 <html>
 <head>
     <?php echo $_embed;?>
+    <script>
+        function printTranskrip(){
+            var head = '<html><head><title>Sebaran Matakuliah</title><link href="<?php echo site_url("assets/styles/app.print.css")?>" rel="stylesheet"><body>';
+            var close = '</body></html>';
+            var content = document.getElementById('transkrip_content').innerHTML;
+            window.frames["transkrip_print_frame"].document.body.innerHTML = head + content + close ;
+            window.frames["transkrip_print_frame"].window.focus();
+            window.frames["transkrip_print_frame"].window.print();
+        }
+    </script>
 </head>
 <body>
 <?php echo $_header;?>
@@ -19,14 +29,35 @@
                             <header>Transkrip</header>
                             <div class="ch-article-content">
                                 <div id="khs_data">
+                                    <div id="transkrip_content">
+                                        <div class="frs_header">
+                                            <img src="<?php echo site_url('assets/pictures/uyp-bw.png')?>">
+                                            <h1>UNIVERSITAS YUDHARTA PASURUAN</h1>
+                                            <p> Kampus : Jl. Yudharta No. 07 (Pesantren Ngalah), Purwosari-Pasuruan Telp/Fax. 0343 611186</p>
+                                            <h1>Transkrip Nilai Mahasiswa</h1>
+                                            <hr>
+                                        </div>
+                                        <table class="head-table">
+                                            <tr>
+                                                <td>Nama Mahasiswa</td>
+                                                <td class="dotted"><?php echo $mhs['user_full_name']?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fakultas / Jurusan</td>
+                                                <td class="dotted"><?php echo $mhs['fak_prod']?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nim</td>
+                                                <td class="dotted"><?php echo $mhs['nim']?></td>
+                                            </tr>
+                                        </table>
                                     <table id="khs_detail"class="table table-condensed ch-table">
                                         <thead>
                                         <tr>
                                             <th>Kode MK</th>
                                             <th>Matakuliah</th>
                                             <th>SKS</th>
-                                            <th>Nilai</th>
-                                            <th>&nbsp;</th>
+                                            <th colspan="2" style="text-align: center">Nilai</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -37,10 +68,13 @@
                                                 <td><?php echo $khs['mk_kode'];?></td>
                                                 <td><?php echo $khs['mk_nama'];?></td>
                                                 <td><?php echo $khs['mk_sks'];?></td>
-                                                <td><?php echo $khs['frs_nilai_huruf'];?></td>
-                                                <td><?php echo $khs['frs_nilai_angka'];?></td>
+                                                <td style="text-align: center"><?php echo $khs['frs_nilai_huruf'];?></td>
+                                                <td style="text-align: center"><?php echo $khs['frs_nilai_angka'];?></td>
                                             </tr>
-                                        <?php endforeach ?>
+                                        <?php
+                                        endforeach;
+                                        $trans = countIpK($transkrip);
+                                        ?>
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -49,9 +83,37 @@
                                             </tr>
                                         </tfoot>
                                     </table>
+                                    <table class="table table-condensed" style="width:50%">
+                                        <tr>
+                                            <th>Jumlah Matakuliah</th>
+                                            <td><?php echo sizeof($transkrip)?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Total SKS</th>
+                                            <td><?php echo $trans['total_sks']?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>IPK</th>
+                                            <td><?php echo $trans['ip']?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tingkat Kelulusan</th>
+                                            <td><?php echo tingkatKelulusan($trans['ip']) ?></td>
+                                        </tr>
+                                    </table>
+                                        </div>
+                                        <div class="row-fluid">
+                                            <div class="span9">
+
+                                            </div>
+                                            <div class="span3 btn-group">
+                                                <button class="btn" onclick="javascript:printTranskrip()"><i class="icon-print"></i> Cetak</button>
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
                         </article>
+                        <iframe id="printing-frame" name="transkrip_print_frame" src="about:blank" style="display:none;"></iframe>
                     </div>
                 </div>
             </div>

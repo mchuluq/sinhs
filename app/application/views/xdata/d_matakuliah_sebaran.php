@@ -4,6 +4,7 @@
         <p>Prodi : <?php echo $fp?></p>
         <p>Tahun Ajaran : <?php echo $ta?></p>
 </div>
+<hr>
 <div class="row-fluid">
 <div class="span12">
     <?php

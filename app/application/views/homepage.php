@@ -46,7 +46,7 @@
                         </li>
                     </ul>
                 <?php }else{ ?>
-                    <a href="<?php echo base_url('sign')?>" class="btn btn-success pull-right"><i class="icon-lock"></i> Sign In</a>
+                    <a accesskey="l" href="<?php echo base_url('sign')?>" class="btn btn-success pull-right"><i class="icon-lock"></i> Sign In</a>
                 <?php } ?>
             </div>
         </div>
