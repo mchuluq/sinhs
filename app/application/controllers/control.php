@@ -274,7 +274,7 @@ class Control Extends Member_Controller{
                             'newline'     => "\n"
                         );
                         $backup =& $this->dbutil->backup($prefs);
-                        write_file('./media/backup_db/'.$filename.'.sql', $backup);
+                        write_file('./mediafiles/bdb/'.$filename.'.sql', $backup);
                         $message = 'Backup penuh telah dibuat dengan nama : '.$filename.'.sql';
                         break;
                     case 'partial':
@@ -289,7 +289,7 @@ class Control Extends Member_Controller{
                             'newline'     => "\n"
                         );
                         $backup =& $this->dbutil->backup($prefs);
-                        write_file('./media/backup_db/'.$filename.'.sql', $backup);
+                        write_file('./mediafiles/bdb/'.$filename.'.sql', $backup);
                         $message = 'Backup sebagian telah dibuat dengan nama : '.$filename.'.sql';
                         break;
                     default :
@@ -321,14 +321,14 @@ class Control Extends Member_Controller{
                         $filename = 'backup_system_application_'.date('Y_m_d_H_i_s');
                         $this->load->library('zip');
                         $this->zip->read_dir('./app/');
-                        $this->zip->archive('./media/backup_system/'.$filename.'.zip');
+                        $this->zip->archive('./mediafiles/bsystem/'.$filename.'.zip');
                         $notif= array('title'=>'Backup System','message'=>'Backup system telah dibuat dengan nama : '.$filename.'.zip','type'=>'info');
                         break;
                     case 'assets':
                         $filename = 'backup_system_assets_'.date('Y_m_d_H_i_s');
                         $this->load->library('zip');
                         $this->zip->read_dir('./assets/');
-                        $this->zip->archive('./media/backup_system/'.$filename.'.zip');
+                        $this->zip->archive('./mediafiles/bsystem/'.$filename.'.zip');
                         $notif= array('title'=>'Backup System','message'=>'Backup system telah dibuat dengan nama : '.$filename.'.zip','type'=>'info');
                         break;
                     default :
