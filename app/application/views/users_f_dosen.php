@@ -75,6 +75,6 @@
         <?php echo $_footer; ?>
     </div>
 </div>
-
+<?php echo $_bscript;?>
 </body>
 </html>

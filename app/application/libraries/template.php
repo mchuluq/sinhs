@@ -19,6 +19,7 @@ class Template {
     private $head_area = 'head_area';
     private $sidebar = 'sidebar';
     private $footer = 'footer';
+	private $foot_script = 'script';
 
     //default background theme
     private $default_bg = "styleGrid";
@@ -47,6 +48,7 @@ class Template {
         $data['_header']=$this->ci->load->view($this->path.'/'.$this->theme.'/'.$this->header,$data,true);
         $data['_sidebar']=$this->ci->load->view($this->path.'/'.$this->theme.'/'.$this->sidebar,$data,true);
         $data['_footer']=$this->ci->load->view($this->path.'/'.$this->theme.'/'.$this->footer,$data,true);
+		$data['_bscript']=$this->ci->load->view($this->path.'/'.$this->theme.'/'.$this->foot_script,$data,true);
         $data['_head_area']=$this->ci->load->view($this->path.'/'.$this->theme.'/'.$this->head_area,$data,true);
         $this->ci->load->view($page,$data);
     }

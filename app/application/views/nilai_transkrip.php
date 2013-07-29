@@ -17,6 +17,11 @@
                            text: data.message,
                            type: data.type
                        });
+                       if(data.type == 'success'){
+                           setInterval(function(){
+                               location.reload();
+                           },3000);
+                       }
                    }
                });
            }) ;
@@ -76,21 +81,36 @@
                                                 <td><?php echo $khs['frs_nilai_angka'];?></td>
                                                 <td><?php
                                                     if($khs['frs_status'] == '1'){ ?>
-                                                        <a class="frs-stat" href="<?php echo base_url('nilai/transkrip_mahasiswa/'.$id.'/non-aktif/'.$khs['frs_id'])?>">Aktif</a>
+                                                        <a class="frs-stat" href="<?php echo base_url('nilai/transkrip_mahasiswa/non-aktif/'.$id.'/'.$khs['frs_id'])?>">Aktif</a>
                                                     <?php } else { ?>
-                                                        <a class="frs-stat" href="<?php echo base_url('nilai/transkrip_mahasiswa/'.$id.'/aktif/'.$khs['frs_id'])?>">Non-Aktif</a>
+                                                        <a class="frs-stat" href="<?php echo base_url('nilai/transkrip_mahasiswa/aktif/'.$id.'/'.$khs['frs_id'])?>">Non-Aktif</a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
-                                        <?php endforeach ?>
+                                        <?php
+                                        endforeach;
+                                        $trans = countIpK($transkrip);
+                                        ?>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th colspan="4">Jumlah Mata kuliah :</th>
-                                                <th><?php echo sizeof($transkrip)?></th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
+                                        <table class="table table-condensed" style="width:50%">
+                                            <tr>
+                                                <th>Jumlah Matakuliah</th>
+                                                <td><?php echo sizeof($transkrip)?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total SKS</th>
+                                                <td><?php echo $trans['total_sks']?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>IPK</th>
+                                                <td><?php echo $trans['ip']?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Predikat</th>
+                                                <td><?php echo predikat($trans['ip']) ?></td>
+                                            </tr>
+                                        </table>
                                 </div>
                             </div>
                         </article>
@@ -106,5 +126,6 @@
         <?php echo $_footer; ?>
     </div>
 </div>
+<?php echo $_bscript;?>
 </body>
 </html>

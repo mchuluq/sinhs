@@ -1,0 +1,1 @@
+<script type="text/javascript" src="<?php echo base_url()?>assets/script_opt/app.all.plugins.js"></script>

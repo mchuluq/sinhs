@@ -11,6 +11,13 @@
             window.frames["frs_print_frame"].window.focus();
             window.frames["frs_print_frame"].window.print();
         }
+        $(document).ready(function(){
+            $.pnotify({
+                title: 'Saran Pencetakan',
+                text: 'Untuk tampilan cetak terbaik, gunakan Google Chrome Web Browser',
+                type: 'info'
+            });
+        });
     </script>
 </head>
 <body>
@@ -131,6 +138,6 @@
         <?php echo $_footer; ?>
     </div>
 </div>
-
+<?php echo $_bscript;?>
 </body>
 </html>

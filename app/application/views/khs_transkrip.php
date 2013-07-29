@@ -11,6 +11,13 @@
             window.frames["transkrip_print_frame"].window.focus();
             window.frames["transkrip_print_frame"].window.print();
         }
+        $(document).ready(function(){
+            $.pnotify({
+                title: 'Saran Pencetakan',
+                text: 'Untuk tampilan cetak terbaik, gunakan Google Chrome Web Browser',
+                type: 'info'
+            });
+        });
     </script>
 </head>
 <body>
@@ -76,12 +83,6 @@
                                         $trans = countIpK($transkrip);
                                         ?>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th colspan="4">Jumlah Mata kuliah :</th>
-                                                <th><?php echo sizeof($transkrip)?></th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                     <table class="table table-condensed" style="width:50%">
                                         <tr>
@@ -97,8 +98,8 @@
                                             <td><?php echo $trans['ip']?></td>
                                         </tr>
                                         <tr>
-                                            <th>Tingkat Kelulusan</th>
-                                            <td><?php echo tingkatKelulusan($trans['ip']) ?></td>
+                                            <th>Predikat</th>
+                                            <td><?php echo predikat($trans['ip']) ?></td>
                                         </tr>
                                     </table>
                                         </div>
@@ -126,6 +127,6 @@
         <?php echo $_footer; ?>
     </div>
 </div>
-
+<?php echo $_bscript;?>
 </body>
 </html>

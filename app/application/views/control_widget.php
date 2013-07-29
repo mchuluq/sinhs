@@ -108,5 +108,6 @@
     <li class="separator"><a href="#edit">Ubah</a></li>
     <li><a href="#drop">Hapus</a></li>
 </ul>
+<?php echo $_bscript;?>
 </body>
 </html>

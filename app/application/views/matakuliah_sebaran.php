@@ -5,6 +5,11 @@
     <script>
         $(document).ready(function(){
             $.sinhs.ajaxForm('#sbr_mk','#mk_data');
+            $.pnotify({
+                title: 'Saran Pencetakan',
+                text: 'Untuk tampilan cetak terbaik, gunakan Google Chrome Web Browser',
+                type: 'info'
+            });
         });
         function printSbrMk(){
             var head = '<html><head><title>Sebaran Matakuliah</title><link href="<?php echo site_url("assets/styles/app.print.css")?>" rel="stylesheet"><body>';
@@ -65,6 +70,6 @@
         <?php echo $_footer; ?>
     </div>
 </div>
-
+<?php echo $_bscript;?>
 </body>
 </html>

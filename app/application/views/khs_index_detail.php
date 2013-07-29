@@ -7,6 +7,11 @@
             $('a.backToGroup').click(function(){
                 history.back();
             })
+            $.pnotify({
+                title: 'Saran Pencetakan',
+                text: 'Untuk tampilan cetak terbaik, gunakan Google Chrome Web Browser',
+                type: 'info'
+            });
         })
         function printKhs(){
             var head = '<html><head><title>KHS</title><link href="<?php echo site_url("assets/styles/app.print.css")?>" rel="stylesheet"><body>';
@@ -100,7 +105,7 @@
                                     </tr>
                                     </tfoot>
                                 </table>
-                                <table class="ip-stat">
+                                <table class="ip-stat" style="width:30%">
                                     <tr>
                                         <td>Indeks Prestasi</td>
                                         <td><?php echo $ips['ip']?></td>
@@ -135,6 +140,6 @@
         <?php echo $_footer; ?>
     </div>
 </div>
-
+<?php echo $_bscript;?>
 </body>
 </html>

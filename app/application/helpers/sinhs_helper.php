@@ -144,43 +144,56 @@ function nilaiSksn($huruf,$sks){
 }
 
 function countIpK($data){
-    $t_sksn = 0;
-    $t_sks = 0;
-    foreach($data as $frs):
-        if($frs['frs_status'] == '1'){
-            $t_sksn = $t_sksn + nilaiSksn($frs['frs_nilai_huruf'],$frs['mk_sks']);
-            $t_sks = $t_sks + $frs['mk_sks'];
-        }
-    endforeach;
-    $ipm = round($t_sksn,2) / $t_sks;
-    $ip = round($ipm,2);
-    return array('total_sks'=>$t_sks,'total_sksn'=>$t_sksn,'ip'=>$ip);
+    if(!empty($data)){
+        $t_sksn = 0;
+        $t_sks = 0;
+        foreach($data as $frs):
+            if($frs['frs_status'] == '1'){
+                $t_sksn = $t_sksn + nilaiSksn($frs['frs_nilai_huruf'],$frs['mk_sks']);
+                $t_sks = $t_sks + $frs['mk_sks'];
+            }
+        endforeach;
+        $ipm = round($t_sksn,2) / $t_sks;
+        $ip = round($ipm,2);
+        return array('total_sks'=>$t_sks,'total_sksn'=>$t_sksn,'ip'=>$ip);
+    }else{
+        return array('total_sks'=>null,'total_sksn'=>null,'ip'=>null);
+    }
 }
 function countIpS($data){
-    $t_sksn = 0;
-    $t_sks = 0;
-    foreach($data as $frs):
-        $t_sksn = $t_sksn + nilaiSksn($frs['frs_nilai_huruf'],$frs['mk_sks']);
-        $t_sks = $t_sks + $frs['mk_sks'];
-    endforeach;
-    $ipm = round($t_sksn,2) / $t_sks;
-    $ip = round($ipm,2);
-    return array('total_sks'=>$t_sks,'total_sksn'=>$t_sksn,'ip'=>$ip);
+    if(!empty($data)){
+        $t_sksn = 0;
+        $t_sks = 0;
+        foreach($data as $frs):
+            $t_sksn = $t_sksn + nilaiSksn($frs['frs_nilai_huruf'],$frs['mk_sks']);
+            $t_sks = $t_sks + $frs['mk_sks'];
+        endforeach;
+        $ipm = round($t_sksn,2) / $t_sks;
+        $ip = round($ipm,2);
+        return array('total_sks'=>$t_sks,'total_sksn'=>$t_sksn,'ip'=>$ip);
+    }else{
+        return array('total_sks'=>null,'total_sksn'=>null,'ip'=>null);
+    }
+
 }
 
-function tingkatKelulusan($ipk){
-    if($ipk >= 3.5 and $ipk <= 4){
-        $tk = "Cumlaude";
-    }elseif($ipk < 3.5 and $ipk >= 3){
-        $tk = "Sangat Memuaskan";
-    }elseif($ipk < 3 and $ipk >= 2.5){
-        $tk = "Baik";
-    }elseif($ipk < 2.5 and $ipk >= 2){
-        $tk = "Cukup";
-    }elseif($ipk < 2){
-        $tk = "Kurang";
+function predikat($ipk){
+    if(!empty($ipk)){
+        if($ipk >= 3.5 and $ipk <= 4){
+            $tk = "Cumlaude";
+        }elseif($ipk < 3.5 and $ipk >= 3){
+            $tk = "Sangat Memuaskan";
+        }elseif($ipk < 3 and $ipk >= 2.5){
+            $tk = "Baik";
+        }elseif($ipk < 2.5 and $ipk >= 2){
+            $tk = "Cukup";
+        }elseif($ipk < 2){
+            $tk = "Kurang";
+        }else{
+            $tk = "tidak diketahui";
+        }
+        return $tk;
     }else{
-        $tk = "tidak diketahui";
+        return 'Kosong';
     }
-    return $tk;
 }
