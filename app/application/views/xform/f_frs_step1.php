@@ -15,9 +15,9 @@
         <table class="table table-condensed">
             <tr>
                 <td><label for="frs_semester">Semester :</label></td>
-                <td><input type="number" name="frs_semester" id="frs_semester" placeholder="5" class="span12" required></td>
+                <td><input type="number" name="frs_semester" id="frs_semester" placeholder="5" class="span12" value="<?php echo $nSmtr['smtr']?>" required></td>
                 <td><label for="frs_thn_ajar">Tahun Ajaran</label></td>
-                <td><input type="text" maxlength="9" name="frs_thn_ajar" id="frs_thn_ajar" placeholder="2013/2014" class="span12" required></td>
+                <td><input type="text" maxlength="9" name="frs_thn_ajar" id="frs_thn_ajar" placeholder="2013/2014" class="span12" value="<?php echo $nSmtr['thn_ajar']?>" required></td>
             </tr>
         </table>
     </fieldset>

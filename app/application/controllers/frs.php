@@ -90,7 +90,8 @@ class Frs extends Member_Controller{
         }
     }
     private function _step1(){
-        $this->load->view('xform/f_frs_step1');
+    	$data['nSmtr'] = $this->sinhs_model->getNextSemester($this->session->userdata('user_id')); 
+        $this->load->view('xform/f_frs_step1',$data);
     }
     private function _step2(){
         $profile = $this->sinhs_model->getMhsProfile($this->session->userdata('user_id'));

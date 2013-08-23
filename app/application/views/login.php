@@ -11,7 +11,7 @@
     <!-- load bootstrap framework -->
     <link href="<?php echo base_url()?>assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo base_url()?>assets/plugins/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <script src="<?php echo base_url()?>assets/plugins/bootstrap/js/bootstrap.min.js"></script
+    <script src="<?php echo base_url()?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- load alertify -->
     <link href="<?php echo base_url()?>assets/plugins/alertify/themes/alertify.core.css" rel="stylesheet">
@@ -25,9 +25,6 @@
     <!--load custom style and script-->
     <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/app.other.min.prefixr.css"/>
     <script type="text/javascript" src="<?php echo base_url()?>assets/scripts/app.other.min.js"></script>
-    <script>
-
-    </script>
 
 </head>
 <body>

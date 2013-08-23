@@ -4,7 +4,20 @@
     <?php echo $_embed;?>
     <link rel="stylesheet" href="<?php echo base_url('assets/styles/toggle-switch.css')?>">
     <script>
+    function printTranskrip(){
+        var head = '<html><head><title>Transkrip Mahasiswa</title><link href="<?php echo site_url("assets/styles/app.print.css")?>" rel="stylesheet"><style>.smbny {display:none;}</style><body>';
+        var close = '</body></html>';
+        var content = document.getElementById('transkrip_content').innerHTML;
+        window.frames["transkrip_print_frame"].document.body.innerHTML = head + content + close ;
+        window.frames["transkrip_print_frame"].window.focus();
+        window.frames["transkrip_print_frame"].window.print();
+    }
         $(document).ready(function(){
+        	$.pnotify({
+                title: 'Saran Pencetakan',
+                text: 'Untuk tampilan cetak terbaik, gunakan Google Chrome Web Browser',
+                type: 'info'
+            });
            $("a.frs-stat").click(function(e){
                e.preventDefault();
                $.ajax({
@@ -43,8 +56,15 @@
                             <header>Transkrip</header>
                             <div class="ch-article-content">
                                 <div id="khs_data">
-                                    <div id="frs_content">
-                                        <table class="table table-condensed" style="width:50%;">
+                                    <div id="transkrip_content">
+                                    <div class="frs_header">
+                                            <img src="<?php echo site_url('assets/pictures/uyp-bw.png')?>">
+                                            <h1>UNIVERSITAS YUDHARTA PASURUAN</h1>
+                                            <p> Kampus : Jl. Yudharta No. 07 (Pesantren Ngalah), Purwosari-Pasuruan Telp/Fax. 0343 611186</p>
+                                            <h1>Transkrip Nilai Mahasiswa</h1>
+                                            <hr>
+                                    </div>
+                                    <table class="table table-condensed" style="width:50%;">
                                             <tr>
                                                 <th>Nama Mahasiswa</th>
                                                 <td class="dotted"><?php echo $mhs['user_full_name']?></td>
@@ -64,9 +84,8 @@
                                             <th>Kode MK</th>
                                             <th>Matakuliah</th>
                                             <th>SKS</th>
-                                            <th>Nilai</th>
-                                            <th>&nbsp;</th>
-                                            <th>&nbsp;</th>
+                                            <th colspan="2">Nilai</th>
+                                            <th class="smbny">&nbsp;</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -79,7 +98,7 @@
                                                 <td><?php echo $khs['mk_sks'];?></td>
                                                 <td><?php echo $khs['frs_nilai_huruf'];?></td>
                                                 <td><?php echo $khs['frs_nilai_angka'];?></td>
-                                                <td><?php
+                                                <td class="smbny"><?php
                                                     if($khs['frs_status'] == '1'){ ?>
                                                         <a class="frs-stat" href="<?php echo base_url('nilai/transkrip_mahasiswa/non-aktif/'.$id.'/'.$khs['frs_id'])?>">Aktif</a>
                                                     <?php } else { ?>
@@ -93,7 +112,7 @@
                                         ?>
                                         </tbody>
                                     </table>
-                                        <table class="table table-condensed" style="width:50%">
+                                    <table class="table table-condensed" style="width:50%">
                                             <tr>
                                                 <th>Jumlah Matakuliah</th>
                                                 <td><?php echo sizeof($transkrip)?></td>
@@ -111,9 +130,19 @@
                                                 <td><?php echo predikat($trans['ip']) ?></td>
                                             </tr>
                                         </table>
-                                </div>
+                                	</div>
+                                	<div class="row-fluid">
+                                            <div class="span9">
+
+                                            </div>
+                                            <div class="span3 btn-group">
+                                                <button class="btn" onclick="javascript:printTranskrip()"><i class="icon-print"></i> Cetak</button>
+                                            </div>
+                                        </div>
+                            	</div>
                             </div>
                         </article>
+                        <iframe id="printing-frame" name="transkrip_print_frame" src="about:blank" style="display:none;"></iframe>
                     </div>
                 </div>
             </div>

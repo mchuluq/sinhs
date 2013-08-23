@@ -1,4 +1,12 @@
 <script>
+    function print(){
+        var head = '<html><head><title>Data Mahasiswa</title><link href="<?php echo site_url("assets/styles/app.print.css")?>" rel="stylesheet"><body>';
+        var close = '</body></html>';
+        var content = document.getElementById('print_content').innerHTML;
+        window.frames["print_frame"].document.body.innerHTML = head + content + close ;
+        window.frames["print_frame"].window.focus();
+        window.frames["print_frame"].window.print();
+    }
     function loadCurrentData(){
         var current_url = "<?php echo base_url($this->uri->uri_string())?>";
         $.ajax({
@@ -39,6 +47,11 @@
         return false;
     }
     $(document).ready(function(){
+        $.pnotify({
+            title: 'Saran Pencetakan',
+            text: 'Untuk tampilan cetak terbaik, gunakan Google Chrome Web Browser',
+            type: 'info'
+        });
         $(".ch-pagination a").click(function(e){
             e.preventDefault();
             var offset = $(this).attr('id');
@@ -74,6 +87,7 @@
         });
     })
 </script>
+<div id="print_content">
 <table id="users_data"class="table table-striped table-hover table-condensed ch-table">
     <thead>
     <tr>
@@ -95,6 +109,8 @@
     <?php endforeach ?>
     </tbody>
 </table>
+</div>
+<iframe id="printing-frame" name="print_frame" src="about:blank" style="display:none;"></iframe>
 <div class="row-fluid">
     <div class="span12" style="text-align:center;">
         <?php echo $pagination ?>
@@ -105,7 +121,8 @@
         <?php echo $total ?>
     </div>
     <div class="span3 btn-group">
-        <a class="btn span12" href="<?php echo base_url('users/add/dosen')?>">Tambah Dosen</a></a>
+        <a class="btn" href="<?php echo base_url('users/add/dosen')?>" title="Tambah Dosen"><i class="icon-plus"></i> Tambah</a>
+        <button class="btn" onclick="javascript:print()" title="Cetak data diatas"><i class="icon-print"></i> Cetak</button>
     </div>
 </div>
 

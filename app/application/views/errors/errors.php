@@ -8,12 +8,9 @@
     <link rel="icon" href="<?php echo base_url()?>assets/pictures/uyp.ico">
     <!--load jquery & jquery ui-->
     <script type="text/javascript" src="<?php echo base_url()?>assets/scripts/jquery-2.0.0.js"></script>
-    <!-- load cloudfire-js -->
-    <script src="<?php echo base_url()?>assets/plugins/cloudfire/js/jquery.cloudfire.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/cloudfire/css/cloudfire-js.css"/>
     <!--load custom style and script-->
-    <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/app.other.css"/>
-    <script type="text/javascript" src="<?php echo base_url()?>assets/scripts/app.other.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/app.other.min.prefixr.css"/>
+    <script type="text/javascript" src="<?php echo base_url()?>assets/scripts/app.other.min.js"></script>
     <script>
 
     </script>

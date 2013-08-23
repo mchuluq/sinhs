@@ -70,9 +70,9 @@
 	<h1>Welcome to CodeIgniter!</h1>
 
 	<div id="body">
-        <?=$this->session->userdata('log_name');?></br/>
-        <?=$this->session->userdata('log_group');?></br/>
-        <?=$this->session->userdata('last_login');?></br/>
+        <?=$this->session->userdata('log_name');?><br>
+        <?=$this->session->userdata('log_group');?><br>
+        <?=$this->session->userdata('last_login');?><br>
 
 
 		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>

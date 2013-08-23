@@ -37,7 +37,7 @@ class elfinder_lib {
 
         <link rel="stylesheet" href="<?php echo base_url($this->elfinder_path)?>/css/common.css"      type="text/css">
         <link rel="stylesheet" href="<?php echo base_url($this->elfinder_path)?>/css/dialog.css"      type="text/css">
-        <link rel="stylesheet" href=<?php echo base_url($this->elfinder_path)?>/css/toolbar.css"     type="text/css">
+        <link rel="stylesheet" href="<?php echo base_url($this->elfinder_path)?>/css/toolbar.css"     type="text/css">
         <link rel="stylesheet" href="<?php echo base_url($this->elfinder_path)?>/css/navbar.css"      type="text/css">
         <link rel="stylesheet" href="<?php echo base_url($this->elfinder_path)?>/css/statusbar.css"   type="text/css">
         <link rel="stylesheet" href="<?php echo base_url($this->elfinder_path)?>/css/contextmenu.css" type="text/css">

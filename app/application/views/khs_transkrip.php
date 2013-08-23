@@ -4,7 +4,7 @@
     <?php echo $_embed;?>
     <script>
         function printTranskrip(){
-            var head = '<html><head><title>Sebaran Matakuliah</title><link href="<?php echo site_url("assets/styles/app.print.css")?>" rel="stylesheet"><body>';
+            var head = '<html><head><title>Transkrip Matakuliah</title><link href="<?php echo site_url("assets/styles/app.print.css")?>" rel="stylesheet"><body>';
             var close = '</body></html>';
             var content = document.getElementById('transkrip_content').innerHTML;
             window.frames["transkrip_print_frame"].document.body.innerHTML = head + content + close ;

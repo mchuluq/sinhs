@@ -149,8 +149,9 @@ class matakuliah extends Member_Controller{
             $this->load->library('form_validation');
             $this->form_validation->set_rules('thn_ajar','Tahun ajar','required');
             $this->form_validation->set_rules('fp','Fakultas Prodi','required');
+            $this->form_validation->set_rules('gg','ganjil Genap','required');
             if($this->form_validation->run()==TRUE){
-                $data['matkul'] = $this->sinhs_model->sebaranMk($this->input->post('thn_ajar'),$this->input->post('fp'));
+                $data['matkul'] = $this->sinhs_model->sebaranMk($this->input->post('thn_ajar'),$this->input->post('fp'),$this->input->post('gg'));
                 $data['ta'] = $this->input->post('thn_ajar');
                 $data['fp'] = $this->input->post('fp');
                 $this->load->view('xdata/d_matakuliah_sebaran',$data);

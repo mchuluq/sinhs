@@ -37,12 +37,16 @@
                             <header>Sebaran matakuliah</header>
                             <div class="ch-article-content">
                                 <form id="sbr_mk" method="POST" action="<?php echo base_url('matakuliah/sebaran')?>" class="form-inline">
+                                    <select name="gg">
+                                    	<option value="gnj">Ganjil</option>
+                                    	<option value="gnp">Genap</option>
+                                    </select>
                                     <select name="thn_ajar">
                                         <?php foreach($thn_ajar as $ta ):?>
                                             <option value="<?php echo $ta['mk_thn_ajar']?>"><?php echo $ta['mk_thn_ajar']?></option>
                                         <?php endforeach;?>
                                     </select>
-                                    <select name="fp"">
+                                    <select name="fp">
                                     <?php foreach($fp_list as $fp ):?>
                                         <option value="<?php echo $fp['fp_fak_prodi']?>"><?php echo $fp['fp_fak_prodi']?></option>
                                     <?php endforeach;?>

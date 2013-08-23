@@ -7,7 +7,7 @@
             $.sinhs.xForm('#input_nilai');
             $(".nilaiAngka").keyup(function(){
                 var value = $(this).val();
-                $(this).parent().parent().find('.nilaiHuruf').text($.sinhs.nilaiHuruf(value));
+                $(this).parent().parent().find('.nilaiHuruf').val($.sinhs.nilaiHuruf(value));
             })
         })
     </script>
@@ -73,7 +73,10 @@
                                                 <span><?php echo $mhs['frs_nilai_angka'] ?></span>
                                                 <input class="span12 nilaiAngka" type="text" name="frs_nilai_angka[]" value="<?php echo $mhs['frs_nilai_angka'] ?>">
                                             </td>
-                                            <td class="nilaiHuruf"><?php echo $mhs['frs_nilai_huruf'] ?></td>
+                                            <td class="ch-tbl-editable">
+                                            	<span><?php echo $mhs['frs_nilai_huruf'] ?></span>
+                                                <input class="span12 nilaiHuruf" type="text" name="frs_nilai_huruf[]" value="<?php echo $mhs['frs_nilai_huruf'] ?>">
+                                           	</td>
                                         </tr>
                                     <?php endforeach; ?>
                                     </tbody>

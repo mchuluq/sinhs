@@ -64,6 +64,35 @@ class Sinhs_model extends CI_Model{
         return $user;
     }
 
+    function getLastSemester($user_id){
+    	$query = mysql_query("SELECT MAX(frs_semester) AS max_frs,frs_thn_ajar FROM ".$this->frs_v." WHERE user_id = '$user_id' LIMIT 0, 1");
+    	$data = mysql_fetch_array($query);
+    	$re['smtr'] =  $data['max_frs'];
+    	$re['thn_ajar'] = $data['frs_thn_ajar'];
+    	return $re;
+    }
+    
+    //function getNextThnAjaran()
+    
+    function getNextSemester($user_id){
+    	$data = $this->getLastSemester($user_id);
+    	if($data['smtr'] < 8){
+    		$re['smtr'] = $data['smtr'] + 1;
+    		if($data['smtr'] % 2 == 0){
+    			$thn_ajar = explode("/",$data['thn_ajar']);
+    			$thn_1 = $thn_ajar[0] + 1;
+    			$thn_2 = $thn_ajar[1] + 1;
+    			$re['thn_ajar'] = $thn_1."/".$thn_2;
+    		}else{
+    			$re['thn_ajar'] = $data['thn_ajar'];
+    		}
+    	}else{
+    		$re['smtr'] = null;
+    		$re['thn_ajar'] = null;
+    	}
+    	return $re;
+    }
+    
     // Model untuk controller matakuliah
 
     function getMkGrouped($offset=0,$limit=10,$search=null){
@@ -120,9 +149,10 @@ class Sinhs_model extends CI_Model{
         return $query->result_array();
     }
 
-    function sebaranMK($thn_ajar,$fp){
+    function sebaranMK($thn_ajar,$fp,$gg){
         $this->db->order_by('mk_semester','asc');
-        $query =$this->db->get_where($this->mk_tbl,array(
+        $this->db->like('mk_grup',$gg);
+        $query = $this->db->get_where($this->mk_tbl,array(
             'mk_thn_ajar'=>$thn_ajar,
             'mk_fak_prod'=>$fp
         ));

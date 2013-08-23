@@ -11,7 +11,7 @@
     <!-- load bootstrap framework -->
     <link href="<?php echo base_url()?>assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo base_url()?>assets/plugins/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <script src="<?php echo base_url()?>assets/plugins/bootstrap/js/bootstrap.min.js"></script
+    <script src="<?php echo base_url()?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- load cloudfire-js -->
     <script src="<?php echo base_url()?>assets/plugins/cloudfire/js/jquery.cloudfire.js"></script>
     <link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/cloudfire/css/cloudfire-js.css"/>
@@ -57,6 +57,7 @@
         <h1>Selamat Datang !</h1>
         <p>Selamat datang di Sistem Informasi Nilai Hasil Studi Fakultas Teknik Universitas Yudharta Pasuruan, di aplikasi yang diperuntukkan bagi mahasiswa Fakultas Teknik UYP ini anda dapat memantau nilai hasil studi dan memprogram FRS. </p>
     </div>
+</div>
 <div id="main-footer">
     <span id="left">&copy; 2013 <a href="<?php echo $this->config->item('author_link')?>"><?php echo $this->config->item('author')?></a></span>
     <span id="right"><a href="<?php echo $this->config->item('kampus_link')?>"><?php echo $this->config->item('app_for')?></a></span>
