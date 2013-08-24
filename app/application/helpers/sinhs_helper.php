@@ -153,7 +153,11 @@ function countIpK($data){
                 $t_sks = $t_sks + $frs['mk_sks'];
             }
         endforeach;
-        $ipm = round($t_sksn,2) / $t_sks;
+        if($t_sksn == 0){
+        	$ipm = 0;
+        }else{
+        	$ipm = round($t_sksn,2) / $t_sks;
+        }        
         $ip = round($ipm,2);
         return array('total_sks'=>$t_sks,'total_sksn'=>$t_sksn,'ip'=>$ip);
     }else{
@@ -168,7 +172,11 @@ function countIpS($data){
             $t_sksn = $t_sksn + nilaiSksn($frs['frs_nilai_huruf'],$frs['mk_sks']);
             $t_sks = $t_sks + $frs['mk_sks'];
         endforeach;
-        $ipm = round($t_sksn,2) / $t_sks;
+    	if($t_sksn == 0){
+        	$ipm = 0;
+        }else{
+        	$ipm = round($t_sksn,2) / $t_sks;
+        } 
         $ip = round($ipm,2);
         return array('total_sks'=>$t_sks,'total_sksn'=>$t_sksn,'ip'=>$ip);
     }else{

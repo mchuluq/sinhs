@@ -65,27 +65,38 @@ class Sinhs_model extends CI_Model{
     }
 
     function getLastSemester($user_id){
-    	$query = mysql_query("SELECT MAX(frs_semester) AS max_frs,frs_thn_ajar FROM ".$this->frs_v." WHERE user_id = '$user_id' LIMIT 0, 1");
+    	$query = mysql_query("SELECT MAX(frs_semester) AS max_frs, MAX(frs_thn_ajar) AS max_thn_ajar FROM ".$this->frs_v." WHERE user_id = '$user_id' LIMIT 0, 1");
     	$data = mysql_fetch_array($query);
-    	$re['smtr'] =  $data['max_frs'];
-    	$re['thn_ajar'] = $data['frs_thn_ajar'];
+    	if($data['max_frs'] == null){
+    		$mhs = $this->getMhsProfile($user_id);
+    		$thn2 = $mhs['thn_angkatan'] + 1;
+    		
+    		$re['smtr'] =  0;
+    		$re['thn_ajar'] = $mhs['thn_angkatan']."/".$thn2;
+    	}else{
+    		$re['smtr'] =  $data['max_frs'];
+    		$re['thn_ajar'] = $data['max_thn_ajar'];
+    	}    	
     	return $re;
     }
     
     //function getNextThnAjaran()
     
     function getNextSemester($user_id){
-    	$data = $this->getLastSemester($user_id);
-    	if($data['smtr'] < 8){
-    		$re['smtr'] = $data['smtr'] + 1;
-    		if($data['smtr'] % 2 == 0){
-    			$thn_ajar = explode("/",$data['thn_ajar']);
-    			$thn_1 = $thn_ajar[0] + 1;
-    			$thn_2 = $thn_ajar[1] + 1;
-    			$re['thn_ajar'] = $thn_1."/".$thn_2;
-    		}else{
-    			$re['thn_ajar'] = $data['thn_ajar'];
-    		}
+    	$ls = $this->getLastSemester($user_id);
+    	if($ls['smtr'] == 0){
+    		$re['smtr'] = 1;
+    		$re['thn_ajar'] = $ls['thn_ajar'];
+    	}elseif($ls['smtr'] == 2 OR $ls['smtr'] == 4 OR $ls['smtr'] == 6){
+    		$thn_ajar = explode("/",$ls['thn_ajar']);
+    		$thn_1 = $thn_ajar[0] + 1;
+    		$thn_2 = $thn_ajar[1] + 1;
+    		
+    		$re['smtr'] = $ls['smtr'] + 1;
+    		$re['thn_ajar'] = $thn_1."/".$thn_2;
+    	}elseif($ls['smtr'] == 1 OR $ls['smtr'] == 3 OR $ls['smtr'] == 5 OR $ls['smtr'] == 7){
+    		$re['smtr'] = $ls['smtr'] + 1;
+    		$re['thn_ajar'] = $ls['thn_ajar'];
     	}else{
     		$re['smtr'] = null;
     		$re['thn_ajar'] = null;

@@ -364,7 +364,7 @@ $config['proxy_ips'] = '';
  *custom configuration ^_^
  * -----------------------
  */
-$config['author'] = "Mochammad Chusnul Chuluq";
+$config['author'] = "MC17";
 $config['author_link'] = "http://www.facebook.com/mchuluq";
 $config['company'] = "Chraven Labs.";
 

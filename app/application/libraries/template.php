@@ -11,7 +11,7 @@ class Template {
     private $path = 'template';
 	
     //nama tema, jika ada ??? :)
-    public $theme = 'default';
+    public $theme = 'publish';
 	
     //bagian2 file template
     private $embedded = 'embed';

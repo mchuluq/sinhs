@@ -41,7 +41,12 @@
                     url: "<?=base_url('control/uac/dmenu')?>"+"/"+id,
                     dataType: "json",
                     success:function(data){
-                        cloudfire.notification(data.message,{title:data.title,type:data.type});
+                        //cloudfire.notification(data.message,{title:data.title,type:data.type});
+                        $.pnotify({
+                            title: data.title,
+                            text: data.message,
+                            type: data.type
+                        });
                         $("#uac-content").load("<?=base_url('control/uac/view')?>");
                     }
                 });
@@ -61,7 +66,12 @@
                     url: "<?=base_url('control/uac/daccess')?>"+"/"+id,
                     dataType: "json",
                     success:function(data){
-                        cloudfire.notification(data.message,{title:data.title,type:data.type});
+                    	$.pnotify({
+                            title: data.title,
+                            text: data.message,
+                            type: data.type
+                        });
+                        //cloudfire.notification(data.message,{title:data.title,type:data.type});
                         $("#uac-content").load("<?=base_url('control/uac/view')?>");
                     }
                 });
