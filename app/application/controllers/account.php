@@ -53,12 +53,13 @@ class Account extends Member_Controller{
         if($_POST){
             $this->load->library('form_validation');
             $this->form_validation->set_rules('pass_old','password lama','required');
-            $this->form_validation->set_rules('pass_new1','password baru','required|callback_password_check');
+            //$this->form_validation->set_rules('pass_new1','password baru','required|callback_password_check');
+            $this->form_validation->set_rules('pass_new1','password baru','required|min_length[6]|max_length[20]');
             $this->form_validation->set_rules('pass_new2','pengulangan password baru','required|matches[pass_new1]');
             if($this->form_validation->run() == TRUE){
                 $data['user_id'] = $this->session->userdata('user_id');
                 $data['user_pass'] = $this->uac->encrypt($this->input->post('pass_new1'));
-                if($this->account_model->checkPass($data['user_id'],$this->uac->encrypt($this->input->post('pass_old')))){
+                if($this->account_model->checkPass($data['user_id'],$this->input->post('pass_old'))){
                     $this->account_model->updateData($data);
                     $this->account_model->checkDefaultData($data['user_id']);
                     $notif= array('title'=>'Password','message'=>'sukses memperbarui password','type'=>'success');

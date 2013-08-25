@@ -20,7 +20,7 @@ class Account_model extends CI_Model{
     }
 
     function updateData($data){
-        $select = $this->db->get_where($this->user_tbl,array('user_name'=>$data['user_name']));
+        $select = $this->db->get_where($this->user_tbl,array('user_id'=>$data['user_id']));
         if ($select->num_rows() != 0)
         {
             return '0';
@@ -37,10 +37,10 @@ class Account_model extends CI_Model{
         );
         $this->session->set_userdata($log_data);
     }
-    function checkPass($id,$epass){
+    function checkPass($id,$pass){
         $query = $this->db->get_where($this->user_tbl,array('user_id'=>$id),1);
         $row = $query->row();
-        if($row->user_pass == $epass){
+        if($row->user_pass == $this->uac->encrypt($pass)){
             return TRUE;
         }else{
             return FALSE;

@@ -79,7 +79,7 @@
                                             <td><label for="pass_new1">Password Baru</label></td>
                                             <td>
                                                 <input class="span12" type="password" id="pass_new1" name="pass_new1" required>
-                                                <span class="form_hint">harap masukkan setidaknya 1 huruf kecil, 1 huruf besar,1 nomor, dan lebih dari 6 karakter. contoh : "Pas5word" </span>
+                                                <span class="form_hint">minimal 6 karakter, maksimal 20 karakter</span>
                                             </td>
                                         </tr>
                                         <tr>
