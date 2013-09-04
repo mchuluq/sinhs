@@ -59,10 +59,14 @@ class Account extends Member_Controller{
             if($this->form_validation->run() == TRUE){
                 $data['user_id'] = $this->session->userdata('user_id');
                 $data['user_pass'] = $this->uac->encrypt($this->input->post('pass_new1'));
-                if($this->account_model->checkPass($data['user_id'],$this->input->post('pass_old'))){
-                    $this->account_model->updateData($data);
-                    $this->account_model->checkDefaultData($data['user_id']);
-                    $notif= array('title'=>'Password','message'=>'sukses memperbarui password','type'=>'success');
+                if($this->account_model->checkPass($data['user_id'],$this->input->post('pass_old'))){                    
+                	$ud = $this->account_model->updateData($data);
+                	if($ud = '1'){
+                		$this->account_model->checkDefaultData($data['user_id']);
+                		$notif= array('title'=>'Password','message'=>'sukses memperbarui password','type'=>'success');
+                	}else{
+                		$notif= array('title'=>'Password','message'=>'unknown error','type'=>'error');
+                	}                    
                 }else{
                     $notif= array('title'=>'Password','message'=>'Password lama anda tidak dikenali','type'=>'error');
                 }

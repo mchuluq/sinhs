@@ -18,10 +18,9 @@ class Account_model extends CI_Model{
         $query = $this->db->get_where($this->user_tbl,array('user_id'=>$this->session->userdata('user_id')),1);
         return $query->row();
     }
-
     function updateData($data){
         $select = $this->db->get_where($this->user_tbl,array('user_id'=>$data['user_id']));
-        if ($select->num_rows() != 0)
+        if ($select->num_rows() == 0)
         {
             return '0';
         }else{
